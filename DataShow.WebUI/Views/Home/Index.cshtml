@@ -1,0 +1,363 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    #copyrightcontent {
+        height: 30px;
+        line-height: 29px;
+        overflow: hidden;
+        position: absolute;
+        top: 100%;
+        margin-top: -30px;
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #e6e6e6;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .dashboard-stats {
+        float: left;
+        width: 20%;
+    }
+
+    .dashboard-stats-item {
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        cursor: pointer;
+        height: 105px;
+        margin-right: 25px;
+        margin-bottom: 10px;
+        padding: 20px 20px;
+    }
+
+        .dashboard-stats-item .m-top-none {
+            margin-top: 2px;
+        }
+
+        .dashboard-stats-item h2 {
+            font-size: 35px;
+            font-family: inherit;
+            line-height: 1.1;
+            font-weight: 500;
+        }
+
+        .dashboard-stats-item h5 {
+            font-size: 14px;
+            font-family: inherit;
+            margin-top: 3px;
+            line-height: 1.1;
+        }
+
+
+        .dashboard-stats-item .stat-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            opacity: .3;
+        }
+
+    .dashboard-stats i.fa.stats-icon {
+        width: 50px;
+        padding: 20px;
+        font-size: 50px;
+        text-align: center;
+        color: #fff;
+        height: 50px;
+        border-radius: 10px;
+    }
+
+    .panel-default {
+        border: none;
+        border-radius: 0px;
+        margin-bottom: 0px;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+
+        .panel-default > .panel-heading {
+            color: #777;
+            background-color: #fff;
+            border-color: #e6e6e6;
+            padding: 10px 10px;
+        }
+
+        .panel-default > .panel-body {
+            padding: 10px;
+            padding-bottom: 0px;
+        }
+
+            .panel-default > .panel-body ul {
+                overflow: hidden;
+                padding: 0;
+                margin: 0px;
+                margin-top: -5px;
+            }
+
+                .panel-default > .panel-body ul li {
+                    line-height: 27px;
+                    list-style-type: none;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+
+                    .panel-default > .panel-body ul li .time {
+                        color: #a1a1a1;
+                        float: right;
+                        padding-right: 5px;
+                    }
+</style>
+<link href="~/Content/earlywarning.css" rel="stylesheet" />
+
+<div id="areascontent">
+    <div id="row">
+        <div class="row-list">
+            <div class="row-cot1 databox">
+                <div class="cont">
+                    <div class="cont-logo"><img src="~/Content/img/ecard.png" width="40px" height="40px" /></div>
+                    <div class="cont-2">
+                        <div class="cont-content">消费预警<span id="ecard1">0</span>人</div>
+                        <div class="cont-beizhu">截止昨天连续<span id="ew_config">3</span>天无消费</div>
+                    </div>
+                    <div id="ew" class="configure"><img src="../../Content/16x16/config.png" alt="设置" /></div>
+                </div>
+                <ul id="ecard2" style="display:none"></ul>
+            </div>
+        </div>
+        <div class="row-list">
+            <div class="row-cot2 databox">
+                <div class="cont">
+                    <div class="cont-logo"><img src="~/Content/img/ecard.png" width="40px" height="40px" /></div>
+                    <div class="cont-2">
+                        <div class="cont-content">图书预警<span id="library1">0</span>人</div>
+                        <div class="cont-beizhu">近<span id="brrow_config">2</span>个月无借阅记录</div>
+                    </div>
+                    <div id="brrow" class="configure"><img src="../../Content/16x16/config.png" alt="设置" /></div>
+                </div>
+                <ul id="library2" style="display:none"></ul>
+            </div>
+        </div>
+        <div class="row-list">
+            <div class="row-cot3 databox">
+                <div class="cont">
+                    <div class="cont-logo"><img src="~/Content/img/pe.png" width="40px" height="40px" /></div>
+                    <div class="cont-2">
+                        <div class="cont-content">健康预警<span id="pe1">0</span>人</div>
+                        <div class="cont-beizhu">学生肥胖人数统计</div>
+                    </div>
+                </div>
+                <ul id="pe2" style="display:none"></ul>
+            </div>
+        </div>
+        <div class="row-list">
+            <div class="row-cot4 databox">
+                <div class="cont">
+                    <div class="cont-logo"><img src="~/Content/img/yiliao.png" width="40px" height="40px" /></div>
+                    <div class="cont-2">
+                        <div class="cont-content">医务预警<span id="yiliao1">0</span>人</div>
+                        <div class="cont-beizhu">昨天挂号人数</div>
+                    </div>
+                </div>
+                <ul id="yiliao2" style="display:none"></ul>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div class="rows" style="margin-bottom: 1%; margin-left:1%; margin-right:1%; overflow: hidden;">
+        <div style="float: left; width: 69%;">
+            <div style="height: 350px; border: 1px solid #e6e6e6; background-color: #fff;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-area-chart fa-lg" style="padding-right: 5px;"></i>考勤统计
+                        <div style="float: right">
+                            @*<span style="font-weight: 500;"><i class="fa fa-square" style="color: #dcdcdc; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>迟到</span>
+                                <span style="margin-left: 10px; font-weight: 500;"><i class="fa fa-square" style="color: #97bbcd; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>缺卡</span>*@
+                        </div>
+                    </div>
+                    <div class="panel-body" style="padding-bottom: 0px;">
+                        <div id="salarychart" style="height: 285px; width: 100%; padding-right: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="float: right; width: 30%;">
+            <div style="height: 350px; border: 1px solid #e6e6e6; background-color: #fff;">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fa fa-pie-chart fa-lg" style="padding-right: 5px;"></i>图书统计</div>
+                    <div class="panel-body" style="padding-top: 20px;">
+                        <div id="leavechart" style="height: 160px; width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rows" style="overflow: hidden;">
+        <div style="float: left; width: 34%; margin-right: 1%;">
+            <div style="height: 265px; border: 1px solid #e6e6e6; background-color: #fff;">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fa fa-thumbs-o-up fa-lg" style="padding-right: 5px;"></i>XXX</div>
+                    <div class="panel-body">
+                        @*<ul>
+                                <li><a href="#">南京森鹿皮件服饰有限公司</a><span class="time">2016-07-21</span></li>
+                                <li><a href="#">曲靖市绿能燃气运输有限公司</a><span class="time">2016-07-20</span></li>
+                                <li><a href="#">青海航天信息有限公司</a><span class="time">2016-07-19</span></li>
+                                <li><a href="#">吉林省蔬菜花卉科学研究院</a><span class="time">2016-07-17</span></li>
+                                <li><a href="#">青海省广播电视信息网络股份有限公司</a><span class="time">2016-07-17</span></li>
+                                <li><a href="#">国营长空精密机械制造公司</a><span class="time">2016-07-13</span></li>
+                                <li><a href="#">广东友元国土信息工程有限公司</a><span class="time">2016-07-12</span></li>
+                                <li><a href="#">广东友元国土信息工程有限公司</a><span class="time">2016-07-12</span></li>
+                            </ul>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="float: left; width: 34%; margin-right: 1%;">
+            <div style="height: 265px; border: 1px solid #e6e6e6; background-color: #fff;">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fa fa-rss fa-lg" style="padding-right: 5px;"></i>XXX</div>
+                    <div class="panel-body">
+                        @*<ul>
+                                <li><a href="#">【通知】新版员工守则，即日执行</a><span class="time">2016-07-21</span></li>
+                                <li><a href="#">【公告】OA办公使用指南</a><span class="time">2016-07-21</span></li>
+                                <li><a href="#">【公告】劳动节集体出游指南</a><span class="time">2016-07-21</span></li>
+                                <li><a href="#">【通知】2016年G20财长和央行行</a><span class="time">2016-07-21</span></li>
+                                <li><a href="#">【通知】2016年G20财长和央行行</a><span class="time">2016-07-21</span></li>
+                                <li><a href="#">【通知】品牌价值的最佳选择</a><span class="time">2016-07-21</span></li>
+                                <li><a href="#">【公告】采购商城全新升级自营业正品</a><span class="time">2016-07-21</span></li>
+                                <li><a href="#">【公告】采购商城全新升级自营业正品</a><span class="time">2016-07-21</span></li>
+                            </ul>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="float: right; width: 30%;">
+            <div style="height: 265px; border: 1px solid #e6e6e6; background-color: #fff;">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fa fa-send fa-lg" style="padding-right: 5px;"></i>XXX</div>
+                    <div class="panel-body">
+                        @*<ul>
+                                <li><a href="#">创新企业党建思想政治工作</a><span class="time">2016-07-02</span></li>
+                                <li><a href="#">现代国有企业道德体系初构</a><span class="time">2016-06-18</span></li>
+                                <li><a href="#">国有企业文化问题根源及文化重塑任务分析</a><span class="time">2016-06-26</span></li>
+                                <li><a href="#">国有企业文化建设必须突出员工文化</a><span class="time">2016-04-20</span></li>
+                                <li><a href="#">加强企业公民建设 推进企业和谐发展</a><span class="time">2016-03-08</span></li>
+                                <li><a href="#">不断提升大庆精神 实现企业持续发展</a><span class="time">2016-02-22</span></li>
+                                <li><a href="#">科学发展作指导 人水和谐路更宽</a><span class="time">2016-02-15</span></li>
+                                <li><a href="#">科学发展作指导 人水和谐路更宽</a><span class="time">2016-02-15</span></li>
+                            </ul>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/ECharts/echarts.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        document.getElementById("ecard1").innerHTML = 111;
+        document.getElementById("ecard2").innerHTML = "<li>工学部：<span>2208</span>人</li><li>高等职业技术（国际）学院：<span>1299</span>人</li><li>经济与管理学院：<span>1272</span>人</li><li>文理学部：<span>548</span>人</li><li>应用艺术设计学院：<span>432</span>人</li>";
+
+        var sex_params = { "data": "sex", "type": "column" }
+        function sex_ajax() {
+            $.ajax({
+                type:"GET",
+                url: "/Service/DataShow.ashx",
+                data: sex_params,
+                dataType: "text",
+                success: function (data) {
+                    data = eval("(" + data + ")");
+                    //数据分配
+                    var items = data;
+
+                    // 路径配置
+                    require.config({
+                        paths: {
+                            echarts: 'http://echarts.baidu.com/build/dist'
+                        }
+                    });
+
+                    // 使用
+                    require(
+                        [
+                            'echarts',
+                            'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+                        ],
+                        function (ec) {
+                            // 基于准备好的dom，初始化echarts图表
+                            var myChart = ec.init(document.getElementById('salarychart'));
+
+                            var option = {
+                                tooltip: {
+                                    show: true
+                                },
+                                legend: {
+                                    data: ['人数']
+                                },
+                                xAxis: [
+                                    {
+                                        type: 'category',
+                                        data: items["xAxis"]
+                                    }
+                                ],
+                                yAxis: [
+                                    {
+                                        type: 'value'
+                                    }
+                                ],
+                                series: [
+                                    {
+                                        "name": "人数",
+                                        "type": "bar",
+                                        "data": items["data"][0]["data"]
+                                    }
+                                ]
+                            };
+
+                            // 为echarts对象加载数据
+                            myChart.setOption(option);
+                        }
+                    );
+                }
+            })
+        }
+        sex_ajax();
+
+        //鼠标事件
+        $(".row-cot1").mouseover(function () {
+            $(".row-cot1 ul").slideDown("1000");
+            $(".row-cot1 .configure").fadeIn("500");
+        });
+        $(".row-cot1").mouseleave(function () {
+            $(".row-cot1 ul").slideUp("1000");
+            $(".row-cot1 .configure").fadeOut("500");
+        });
+        $(".row-cot2").mouseover(function () {
+            $(".row-cot2 ul").slideDown("1000");
+            $(".row-cot2 .configure").fadeIn("500");
+        });
+        $(".row-cot2").mouseleave(function () {
+            $(".row-cot2 ul").slideUp("1000");
+            $(".row-cot2 .configure").fadeOut("500");
+        });
+        $(".row-cot3").mouseover(function () {
+            $(".row-cot3 ul").slideDown("1000");
+            $(".row-cot3 .configure").fadeIn("500");
+        });
+        $(".row-cot3").mouseleave(function () {
+            $(".row-cot3 ul").slideUp("1000");
+            $(".row-cot3 .configure").fadeOut("500");
+        });
+        $(".row-cot4").mouseover(function () {
+            $(".row-cot4 ul").slideDown("1000");
+            $(".row-cot4 .configure").fadeIn("500");
+        });
+        $(".row-cot4").mouseleave(function () {
+            $(".row-cot4 ul").slideUp("1000");
+            $(".row-cot4 .configure").fadeOut("500");
+        });
+    });
+</script>
