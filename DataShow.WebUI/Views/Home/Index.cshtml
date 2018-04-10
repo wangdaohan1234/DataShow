@@ -258,8 +258,36 @@
 <script src="~/Scripts/ECharts/echarts.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        document.getElementById("ecard1").innerHTML = 111;
-        document.getElementById("ecard2").innerHTML = "<li>工学部：<span>2208</span>人</li><li>高等职业技术（国际）学院：<span>1299</span>人</li><li>经济与管理学院：<span>1272</span>人</li><li>文理学部：<span>548</span>人</li><li>应用艺术设计学院：<span>432</span>人</li>";
+        var EW_params = { "data": "EW" }
+        function EW_ajax() {
+            $.ajax({
+                type: "GET",
+                url: "/Service/EarlyWarning.ashx",
+                data: EW_params,
+                dataType: "text",
+                success: function (data) {
+                    data = eval("(" + data + ")");
+                    //数据分配
+                    document.getElementById("ecard1").innerHTML = data["ecard"][1];
+                    document.getElementById("ecard2").innerHTML = data["ecard"][0];
+                    document.getElementById("library1").innerHTML = data["library"][1];
+                    document.getElementById("library2").innerHTML = data["library"][0];
+                    document.getElementById("pe1").innerHTML = data["pe"][1];
+                    document.getElementById("pe2").innerHTML = data["pe"][0];
+                    document.getElementById("yiliao1").innerHTML = data["yiliao"][1];
+                    document.getElementById("yiliao2").innerHTML = data["yiliao"][0];
+                    //document.getElementById("ew_config").innerHTML = data["ew"];
+                    document.getElementById("ew_config2").innerHTML = data["ew"];
+                    document.getElementById("ew_config3").innerHTML = data["ew"];
+                    document.getElementById("brrow_config").innerHTML = data["brrow"];
+
+                }
+            })
+        }
+        EW_ajax();
+
+        //document.getElementById("ecard1").innerHTML = 111;
+        //document.getElementById("ecard2").innerHTML = "<li>工学部：<span>2208</span>人</li><li>高等职业技术（国际）学院：<span>1299</span>人</li><li>经济与管理学院：<span>1272</span>人</li><li>文理学部：<span>548</span>人</li><li>应用艺术设计学院：<span>432</span>人</li>";
 
         var sex_params = { "data": "sex", "type": "column" }
         function sex_ajax() {

@@ -208,6 +208,9 @@
     <Compile Include="Service\DataShow.ashx.cs">
       <DependentUpon>DataShow.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\EarlyWarning.ashx.cs">
+      <DependentUpon>EarlyWarning.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -543,6 +546,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service\DataShow.ashx" />
+    <Content Include="Service\EarlyWarning.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

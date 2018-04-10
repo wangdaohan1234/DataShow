@@ -12,6 +12,41 @@ namespace DataShow.Domain
     {
         private static string connectstring = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 
+        public static DataSet SqlToTable(List<string> sts)
+        {
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection con = new SqlConnection(connectstring);
+            try
+            {
+                con.Open();
+                for(int i = 0; i < sts.Count; i++)
+                {
+                    cmd.Connection = con;
+                    cmd.CommandText = sts[i];
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    ds.Tables.Add(dt);
+                    dt = new DataTable();
+                }
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    da.Dispose();
+                    con.Close();
+                    con.Dispose();
+                }
+            }
+            return ds;
+        }
         public static DataSet ProceureToTable(string ProName, SqlParameter[] parm)
         {
             DataSet ds = new DataSet();
