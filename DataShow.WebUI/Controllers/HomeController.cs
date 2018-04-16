@@ -13,6 +13,11 @@ namespace DataShow.WebUI.Controllers
             return View();
         }
 
+        public ActionResult Show()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

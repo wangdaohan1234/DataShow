@@ -1,0 +1,249 @@
+﻿@{
+    ViewBag.Title = "Show";
+}
+<link href="~/Content/earlywarning.css" rel="stylesheet" />
+<div id="Params" style="background-color:#f3f3f3; width:100%; margin-top:0px; padding-top:8px;">
+    <div id="home_ecard" class="databox">
+        <div class="box over-view-box">
+            <div class="box-title">
+                <span></span>
+                <span style="width:130px; float:left;">&nbsp;&nbsp;校情展示</span>
+                <div class="time" id="item_time"></div>
+            </div>
+            <div class="beizhu">
+                <div class="list_box">&nbsp;</div>
+                以下数据为<span id="item_time_1" style=" color:Red; font-weight:600"></span>学校校情信息统计
+            </div>
+
+            <div class="box-body" style="min-height:auto;">
+                <!--校园卡-->
+                <div class="xe-widget xe-counter">
+                    <div class="xe-icon">
+                        <i class="linecons-user">师</i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num" id="jiaoshi">0</strong>
+                        <span>教工卡（张）</span>
+                    </div>
+                </div>
+                <div class="xe-widget xe-counter xe-counter-purple">
+                    <div class="xe-icon">
+                        <i class="linecons-user">学</i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num" id="stu">0</strong>
+                        <span>学生卡（张）</span>
+                    </div>
+                </div>
+                <div class="xe-widget xe-counter xe-counter-info">
+                    <div class="xe-icon">
+                        <i class="linecons-user">临</i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num" id="linshi">0</strong>
+                        <span>临时卡（张）</span>
+                    </div>
+                </div>
+                <!--图书馆-->
+                <div class="xe-widget xe-counter xe-counter-info">
+                    <div class="xe-icon">
+                        <i class="linecons-user" style="background-color:#2CB0B2">藏</i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num" id="books">0</strong>
+                        <span>馆藏图书(万册)</span>
+                    </div>
+                </div>
+                <div class="xe-widget xe-counter xe-counter-info">
+                    <div class="xe-icon">
+                        <i class="linecons-user" style="background-color:#F4CF36">借</i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num" id="jiechu">0</strong>
+                        <span>借出图书（册）</span>
+                    </div>
+                </div>
+                <div class="xe-widget xe-counter xe-counter-info">
+                    <div class="xe-icon">
+                        <i class="linecons-user" style="background-color:#E26D64">还</i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num" id="huan">0</strong>
+                        <span>归还图书（册）</span>
+                    </div>
+                </div>
+                <div class="xe-widget xe-counter xe-counter-info">
+                    <div class="xe-icon">
+                        <i class="linecons-user" style="background-color:#79521B">续</i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num" id="xujie">0</strong>
+                        <span>续借图书（册）</span>
+                    </div>
+                </div>
+                <!--消费-->
+                <div class="xe-widget xe-counter xe-counter-info">
+                    <div class="xe-icon">
+                        <i class="linecons-user" style="background:#E77843">流</i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num" id="liutong">0</strong>
+                        <span>流通卡（张）</span>
+                    </div>
+                </div>
+                <div class="xe-widget xe-counter xe-counter-info">
+                    <div class="xe-icon">
+                        <i class="linecons-user" style="background-color:#F8C301">总</i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num" id="zonghe">0</strong>
+                        <span>总消费（万元）</span>
+                    </div>
+                </div>
+                <div class="xe-widget xe-counter xe-counter-info">
+                    <div class="xe-icon">
+                        <i class="linecons-user" style="background-color:#B3DDEB">次</i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num" id="cishu">0</strong>
+                        <span>消费次数（次）</span>
+                    </div>
+                </div>
+                <div class="xe-widget xe-counter xe-counter-info">
+                    <div class="xe-icon">
+                        <i class="linecons-user" style="background-color:#A2CE3B">均</i>
+                    </div>
+                    <div class="xe-label">
+                        <strong class="num" id="renjun">0</strong>
+                        <span>人均消费（元）</span>
+                    </div>
+                </div>
+                <div style=" clear:both"></div>
+            </div>
+        </div>
+    </div>
+    <div id="home_data" class="databox">
+        <div class="box over-view-box">
+            <div class="box-title">
+                <span class="title-icon"><img src="../../Content/16x16/database.png" width="25px" height="25px" /></span>
+                <span style="width:130px; float:left;">&nbsp;&nbsp;详细数据</span>
+            </div>
+            <div class="box-body" style=" min-height:100px;">
+                <table class="bordered">
+                    <thead>
+                        <tr>
+                            <th>类型</th>
+                            <th>数量</th>
+                            <th>类型</th>
+                            <th>数量</th>
+                            <th>类型</th>
+                            <th>数量</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td><span>教工卡（张）</span></td>
+                        <td><span id="jiaoshi-1">0</span></td>
+                        <td><span>学生卡（张）</span></td>
+                        <td><span id="stu-1">0</span></td>
+                        <td><span>临时卡（张）</span></td>
+                        <td><span id="linshi-1">0.0</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>馆藏图书（万册）</span></td>
+                        <td><span id="books-1">0</span></td>
+                        <td><span>借出图书（册）</span></td>
+                        <td><span id="jiechu-1">0</span></td>
+                        <td><span>归还图书（册）</span></td>
+                        <td><span id="huan-1">0.0</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>续借图书（册）</span></td>
+                        <td><span id="xujie-1">0</span></td>
+                        <td><span>流通卡（张）</span></td>
+                        <td><span id="liutong-1">0</span></td>
+                        <td><span>总消费（万元）</span></td>
+                        <td><span id="zonghe-1">0.0</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>消费次数（次）</span></td>
+                        <td><span id="cishu-1">0</span></td>
+                        <td><span>人均消费（元）</span></td>
+                        <td><span id="renjun-1">0</span></td>
+                        <td><span></span></td>
+                        <td><span id="Span10"></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.animateNumber.min.js"></script>
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        ////////////////////////////////////////////
+        //预警信息采集
+        $.ajax({
+            type: "GET",
+            url: "/Service/DataShow.ashx",
+            data: { "data": "SHOW" },
+            dataType: "text",
+            success: function (data) {
+                //获得root对象
+                data = eval("(" + data + ")");
+                //数据分配
+                //document.getElementById("jiaoshi").innerHTML = data["ecard"][0]["教工"];
+                $("#jiaoshi").animateNumber({ number: data["card"]["教职工"] + data["card"]["教授"] }, 4000);
+                $("#stu").animateNumber({ number: data["card"]["本科生"] + data["card"]["专科生"] }, 4000);
+                $("#linshi").animateNumber({ number: data["card"]["校外临时人员"] + data["card"]["校内临时人员"] }, 4000);
+                $("#books").animateNumber({ number: parseInt(data["books"] / 10000) }, 3000);
+                $("#liutong").animateNumber({ number: data["consume"][0] }, 4000);
+                $("#zonghe").animateNumber({ number: parseInt(data["consume"][1] / 10000) }, 3000);
+                $("#cishu").animateNumber({ number: data["consume"][2] }, 4000);
+
+                document.getElementById("jiaoshi-1").innerHTML = data["card"]["教职工"] + data["card"]["教授"];
+                document.getElementById("stu-1").innerHTML = data["card"]["本科生"] + data["card"]["专科生"];
+                document.getElementById("linshi-1").innerHTML = data["card"]["校外临时人员"] + data["card"]["校内临时人员"];
+                document.getElementById("books-1").innerHTML = parseInt(data["books"] / 10000);
+                document.getElementById("liutong-1").innerHTML = data["consume"][0];
+                document.getElementById("zonghe-1").innerHTML = parseInt(data["consume"][1] / 10000);
+                document.getElementById("cishu-1").innerHTML = data["consume"][2];
+                document.getElementById("renjun-1").innerHTML = data["consume"][3];
+
+                var decimal_places = 1;
+                var decimal_factor = decimal_places === 0 ? 1 : decimal_places * 10;
+                $("#renjun").animateNumber({
+                    number: data["consume"][3] * decimal_factor,
+                    numberStep: function (now, tween) {
+                        var floored_number = Math.floor(now) / decimal_factor,
+                            target = $(tween.elem);
+                        if (decimal_places > 0) {
+                            floored_number = floored_number.toFixed(decimal_places);
+                        }
+                        target.text(floored_number);
+                    }
+                },
+                3000
+                );
+                document.getElementById("item_time").innerHTML = "最新统计时间：" + data["time"];
+                document.getElementById("item_time_1").innerHTML = data["time"];
+                //图书
+                for (var i = 0; i < data["borrow"].length; i++) {
+                    for (var key in data["borrow"][i]) {
+                        if (key == "借书") {
+                            $("#jiechu").animateNumber({ number: data["borrow"][i][key] }, 3000);
+                            document.getElementById("jiechu-1").innerHTML = data["borrow"][i][key];
+                        }
+                        if (key == "还书") {
+                            $("#huan").animateNumber({ number: data["borrow"][i][key] }, 3000);
+                            document.getElementById("huan-1").innerHTML = data["borrow"][i][key];
+                        }
+                        if (key == "自助机续借") {
+                            $("#xujie").animateNumber({ number: data["borrow"][i][key] }, 3000);
+                            document.getElementById("xujie-1").innerHTML = data["borrow"][i][key];
+                        }
+                    }
+                }
+            }
+        })
+    });
+</script>

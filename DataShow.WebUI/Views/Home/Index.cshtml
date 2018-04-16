@@ -112,8 +112,8 @@
 </style>
 <link href="~/Content/earlywarning.css" rel="stylesheet" />
 
-<div id="areascontent">
-    <div id="row">
+<div class="row">
+    <div class="col-lg-10">
         <div class="row-list">
             <div class="row-cot1 databox">
                 <div class="cont">
@@ -166,88 +166,91 @@
         </div>
         <div style="clear:both"></div>
     </div>
-    <div class="rows" style="margin-bottom: 1%; margin-left:1%; margin-right:1%; overflow: hidden;">
-        <div style="float: left; width: 69%;">
-            <div style="height: 350px; border: 1px solid #e6e6e6; background-color: #fff;">
-                <div class="panel panel-default">
+    <div class="col-lg-10">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <i class="fa fa-area-chart fa-lg" style="padding-right: 5px;"></i>考勤统计
-                        <div style="float: right">
-                            @*<span style="font-weight: 500;"><i class="fa fa-square" style="color: #dcdcdc; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>迟到</span>
-                                <span style="margin-left: 10px; font-weight: 500;"><i class="fa fa-square" style="color: #97bbcd; font-size: 20px; padding-right: 5px; vertical-align: middle; margin-top: -3px;"></i>缺卡</span>*@
+                        <span class="h3">学生预警统计</span>
+                    </div>
+                    <div class="panel-body">
+                        <div id="yjbyxxnj" style="width:95%; height:250px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="control-4-1" class="col-lg-6">
+                <div class="panel panel-yellow">
+                    <div class="panel-heading">
+                        <span class="h3">学生人均消费预警</span>
+                    </div>
+                    <div class="panel-body">
+                        <div style="width:100%; height:auto; margin-top:10px; font-size:13px; float:left">
+                            <div style="width:200px; height:28px; float:left; margin-left:20px; vertical-align:middle; overflow:hidden">
+                                学号：<input id="XH" style="height:20px;line-height:20px; margin-top:3px" type="text" size="15" />
+                            </div>
+                            <a class="sub" id="submit_meal" href="javascript:void(0)" style="margin-right:60px; margin-left:20px">检索</a>
+                        </div>
+                        <div style="width:100%; height:auto; margin-top:5px; float:left">
+                            <a class="sub month" href="javascript:void(0)" style="margin-left:20px; float:left">三个月</a>
+                            <a class="sub month" href="javascript:void(0)" style="margin-left:10px; float:left">六个月</a>
+                            <a class="sub month" href="javascript:void(0)" style="margin-left:10px; float:left">九个月</a>
+                            <a class="sub month" href="javascript:void(0)" style="width:80px; margin-left:10px; float:left">十二个月</a>
+                        </div>
+                        <div style="width:100%;height:auto; margin:5px 0 0 0; padding-left:5px; font-size:13px; line-height:25px; float:left; clear:both">
+                            <span id="st_jl" style="height:20px; color:Red">&nbsp;</span>
+                            <table class="bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>早餐</th>
+                                        <th>午餐</th>
+                                        <th>晚餐</th>
+                                        <th>夜宵</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td><span id="st_xh" style=" color:#33CC66">某同学</span></td>
+                                    <td><span id="st_zao">0.0</span></td>
+                                    <td><span id="st_zhong">0.0</span></td>
+                                    <td><span id="st_wan">0.0</span></td>
+                                    <td><span id="st_ye">0.0</span></td>
+                                </tr>
+                                <tr>
+                                    <td>全校男生</td>
+                                    <td><span id="L_zao">0.0</span></td>
+                                    <td><span id="L_zhong">0.0</span></td>
+                                    <td><span id="L_wan">0.0</span></td>
+                                    <td><span id="L_ye">0.0</span></td>
+                                </tr>
+                                <tr>
+                                    <td>全校女生</td>
+                                    <td><span id="N_zao">0.0</span></td>
+                                    <td><span id="N_zhong">0.0</span></td>
+                                    <td><span id="N_wan">0.0</span></td>
+                                    <td><span id="N_ye">0.0</span></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
-                    <div class="panel-body" style="padding-bottom: 0px;">
-                        <div id="salarychart" style="height: 285px; width: 100%; padding-right: 10px;"></div>
-                    </div>
                 </div>
             </div>
-        </div>
-        <div style="float: right; width: 30%;">
-            <div style="height: 350px; border: 1px solid #e6e6e6; background-color: #fff;">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><i class="fa fa-pie-chart fa-lg" style="padding-right: 5px;"></i>图书统计</div>
-                    <div class="panel-body" style="padding-top: 20px;">
-                        <div id="leavechart" style="height: 160px; width: 100%;"></div>
+            <div class="col-lg-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <span class="h3">晚归学生</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="rows" style="overflow: hidden;">
-        <div style="float: left; width: 34%; margin-right: 1%;">
-            <div style="height: 265px; border: 1px solid #e6e6e6; background-color: #fff;">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><i class="fa fa-thumbs-o-up fa-lg" style="padding-right: 5px;"></i>XXX</div>
                     <div class="panel-body">
-                        @*<ul>
-                                <li><a href="#">南京森鹿皮件服饰有限公司</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">曲靖市绿能燃气运输有限公司</a><span class="time">2016-07-20</span></li>
-                                <li><a href="#">青海航天信息有限公司</a><span class="time">2016-07-19</span></li>
-                                <li><a href="#">吉林省蔬菜花卉科学研究院</a><span class="time">2016-07-17</span></li>
-                                <li><a href="#">青海省广播电视信息网络股份有限公司</a><span class="time">2016-07-17</span></li>
-                                <li><a href="#">国营长空精密机械制造公司</a><span class="time">2016-07-13</span></li>
-                                <li><a href="#">广东友元国土信息工程有限公司</a><span class="time">2016-07-12</span></li>
-                                <li><a href="#">广东友元国土信息工程有限公司</a><span class="time">2016-07-12</span></li>
-                            </ul>*@
+                        <div id="wgxs" style="width:95%; height:250px;"></div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div style="float: left; width: 34%; margin-right: 1%;">
-            <div style="height: 265px; border: 1px solid #e6e6e6; background-color: #fff;">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><i class="fa fa-rss fa-lg" style="padding-right: 5px;"></i>XXX</div>
-                    <div class="panel-body">
-                        @*<ul>
-                                <li><a href="#">【通知】新版员工守则，即日执行</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【公告】OA办公使用指南</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【公告】劳动节集体出游指南</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【通知】2016年G20财长和央行行</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【通知】2016年G20财长和央行行</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【通知】品牌价值的最佳选择</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【公告】采购商城全新升级自营业正品</a><span class="time">2016-07-21</span></li>
-                                <li><a href="#">【公告】采购商城全新升级自营业正品</a><span class="time">2016-07-21</span></li>
-                            </ul>*@
+            <div class="col-lg-12">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        <span class="h3">学生预警统计</span>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div style="float: right; width: 30%;">
-            <div style="height: 265px; border: 1px solid #e6e6e6; background-color: #fff;">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><i class="fa fa-send fa-lg" style="padding-right: 5px;"></i>XXX</div>
                     <div class="panel-body">
-                        @*<ul>
-                                <li><a href="#">创新企业党建思想政治工作</a><span class="time">2016-07-02</span></li>
-                                <li><a href="#">现代国有企业道德体系初构</a><span class="time">2016-06-18</span></li>
-                                <li><a href="#">国有企业文化问题根源及文化重塑任务分析</a><span class="time">2016-06-26</span></li>
-                                <li><a href="#">国有企业文化建设必须突出员工文化</a><span class="time">2016-04-20</span></li>
-                                <li><a href="#">加强企业公民建设 推进企业和谐发展</a><span class="time">2016-03-08</span></li>
-                                <li><a href="#">不断提升大庆精神 实现企业持续发展</a><span class="time">2016-02-22</span></li>
-                                <li><a href="#">科学发展作指导 人水和谐路更宽</a><span class="time">2016-02-15</span></li>
-                                <li><a href="#">科学发展作指导 人水和谐路更宽</a><span class="time">2016-02-15</span></li>
-                            </ul>*@
+                        <div id="yjbyfdy" style="width:95%; height:250px;"></div>
                     </div>
                 </div>
             </div>
@@ -258,101 +261,403 @@
 <script src="~/Scripts/ECharts/echarts.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var EW_params = { "data": "EW" }
-        function EW_ajax() {
+        $.ajax({
+            type: "GET",
+            url: "/Service/DataShow.ashx",
+            data: { "data": "EW" },
+            dataType: "text",
+            success: function (data) {
+                data = eval("(" + data + ")");
+                //数据分配
+                document.getElementById("ecard1").innerHTML = data["ecard"][1];
+                document.getElementById("ecard2").innerHTML = data["ecard"][0];
+                document.getElementById("library1").innerHTML = data["library"][1];
+                document.getElementById("library2").innerHTML = data["library"][0];
+                document.getElementById("pe1").innerHTML = data["pe"][1];
+                document.getElementById("pe2").innerHTML = data["pe"][0];
+                document.getElementById("yiliao1").innerHTML = data["yiliao"][1];
+                document.getElementById("yiliao2").innerHTML = data["yiliao"][0];
+                //document.getElementById("ew_config").innerHTML = data["ew"];
+                //document.getElementById("ew_config2").innerHTML = data["ew"];
+                //document.getElementById("ew_config3").innerHTML = data["ew"];
+                document.getElementById("brrow_config").innerHTML = data["brrow"];
+
+            }
+        })
+        $.ajax({
+            type:"GET",
+            url: "/Service/EarlyWarning.ashx",
+            data: { "data": "XSYJByXYAndNJ", "type": "column" },
+            dataType: "text",
+            success: function (data) {
+                data = eval("(" + data + ")");
+                //数据分配
+                var items = data;
+
+                // 路径配置
+                require.config({
+                    paths: {
+                        echarts: 'http://echarts.baidu.com/build/dist'
+                    }
+                });
+
+                // 使用
+                require(
+                    [
+                        'echarts',
+                        'echarts/chart/line',
+                        'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+                    ],
+                    function (ec) {
+                        // 基于准备好的dom，初始化echarts图表
+                        var myChart = ec.init(document.getElementById('yjbyxxnj'));
+
+                        var option = {
+                            title: {
+                                text: ''
+                            },
+                            tooltip: {
+                                show: true
+                            },
+                            legend: {
+                                data: ['2014', '2015', '2016', '2017']
+                            },
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    dataView: { show: true, readOnly: false },
+                                    magicType: { show: true, type: ['line', 'bar'] },
+                                    restore: { show: true },
+                                    saveAsImage: { show: true }
+                                }
+                            },
+                            xAxis: [
+                                {
+                                    type: 'category',
+                                    data: items["xAxis"]
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    type: 'value'
+                                }
+                            ],
+                            series: [
+                                {
+                                    "name": "2014",
+                                    "type": "bar",
+                                    "data": items["data"][0]["data"]
+                                },
+                                {
+                                    "name": "2015",
+                                    "type": "bar",
+                                    "data": items["data"][1]["data"]
+                                },
+                                {
+                                    "name": "2016",
+                                    "type": "bar",
+                                    "data": items["data"][2]["data"]
+                                },
+                                {
+                                    "name": "2017",
+                                    "type": "bar",
+                                    "data": items["data"][3]["data"]
+                                }
+                            ]
+                        };
+
+                        // 为echarts对象加载数据
+                        myChart.setOption(option);
+                    }
+                );
+            }
+        })
+        $.ajax({
+            type: "GET",
+            url: "/Service/EarlyWarning.ashx",
+            data: { "data": "XSYJByFDY", "type": "column" },
+            dataType: "text",
+            success: function (data) {
+                data = eval("(" + data + ")");
+                //数据分配
+                var items = data;
+
+                // 路径配置
+                require.config({
+                    paths: {
+                        echarts: 'http://echarts.baidu.com/build/dist'
+                    }
+                });
+
+                // 使用
+                require(
+                    [
+                        'echarts',
+                        'echarts/chart/line',
+                        'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+                    ],
+                    function (ec) {
+                        // 基于准备好的dom，初始化echarts图表
+                        var myChart = ec.init(document.getElementById('yjbyfdy'));
+
+                        var option = {
+                            title: {
+                                text: ''
+                            },
+                            tooltip: {
+                                show: true
+                            },
+                            legend: {
+                                data: ['人数']
+                            },
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    dataView: { show: true, readOnly: false },
+                                    magicType: { show: true, type: ['line', 'bar'] },
+                                    restore: { show: true },
+                                    saveAsImage: { show: true }
+                                }
+                            },
+                            xAxis: [
+                                {
+                                    type: 'category',
+                                    data: items["xAxis"]
+                                }
+                            ],
+                            yAxis: [
+                                {
+                                    type: 'value'
+                                }
+                            ],
+                            series: [
+                                {
+                                    "name": "人数",
+                                    "type": "bar",
+                                    "data": items["data"][0]["data"]
+                                }
+                            ]
+                        };
+
+                        // 为echarts对象加载数据
+                        myChart.setOption(option);
+                    }
+                );
+            }
+        })
+        $.ajax({
+            type: "GET",
+            url: "/Service/EarlyWarning.ashx",
+            data: { "data": "WGXS", "type": "pie" },
+            dataType: "text",
+            success: function (data) {
+                data = eval("(" + data + ")");
+                //数据分配
+                var items = data;
+
+                // 路径配置
+                require.config({
+                    paths: {
+                        echarts: 'http://echarts.baidu.com/build/dist'
+                    }
+                });
+
+                // 使用
+                require(
+                    [
+                        'echarts',
+                        'echarts/chart/funnel',
+                        'echarts/chart/pie' // 使用柱状图就加载bar模块，按需加载
+                    ],
+                    function (ec) {
+                        // 基于准备好的dom，初始化echarts图表
+                        var myChart = ec.init(document.getElementById('wgxs'));
+
+                        var option = {
+                            title: {
+                                text: ''
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: "{a} <br/>{b} : {c} ({d}%)"
+                            },
+                            legend: {
+                                orient: 'vertical',
+                                x: 'left',
+                                data: ['人数']
+                            },
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    mark: { show: true },
+                                    dataView: { show: true, readOnly: false },
+                                    magicType: {
+                                        show: true,
+                                        type: ['pie', 'funnel'],
+                                        option: {
+                                            funnel: {
+                                                x: '25%',
+                                                width: '50%',
+                                                funnelAlign: 'left',
+                                                max: 1548
+                                            }
+                                        }
+                                    },
+                                    restore: { show: true },
+                                    saveAsImage: { show: true }
+                                }
+                            },
+                            calculable: true,
+                            series: [
+                                {
+                                    name: "晚归学生",
+                                    type: "pie",
+                                    radius: '55%',
+                                    center: ['50%', '60%'],
+                                    data: items["pie"]
+                                }
+                            ]
+                        };
+
+                        // 为echarts对象加载数据
+                        myChart.setOption(option);
+                    }
+                );
+            }
+        })
+
+        var meal = { "month": "三个月", "data": "meal" };
+        $(".month").click(function () {
+            meal = $.extend(meal, { "month": this.innerText });
+            meal_ajax();
+        });
+        $("#submit_meal").click(function () {
+            if (document.getElementById("XH").value.length != 11) {
+                alert("输入的学号有误!");
+                return;
+            }
+            meal = $.extend(meal, { "user": document.getElementById("XH").value });
+            meal_ajax();
+        });
+        function meal_ajax() {
             $.ajax({
-                type: "GET",
-                url: "/Service/EarlyWarning.ashx",
-                data: EW_params,
-                dataType: "text",
-                success: function (data) {
-                    data = eval("(" + data + ")");
-                    //数据分配
-                    document.getElementById("ecard1").innerHTML = data["ecard"][1];
-                    document.getElementById("ecard2").innerHTML = data["ecard"][0];
-                    document.getElementById("library1").innerHTML = data["library"][1];
-                    document.getElementById("library2").innerHTML = data["library"][0];
-                    document.getElementById("pe1").innerHTML = data["pe"][1];
-                    document.getElementById("pe2").innerHTML = data["pe"][0];
-                    document.getElementById("yiliao1").innerHTML = data["yiliao"][1];
-                    document.getElementById("yiliao2").innerHTML = data["yiliao"][0];
-                    //document.getElementById("ew_config").innerHTML = data["ew"];
-                    document.getElementById("ew_config2").innerHTML = data["ew"];
-                    document.getElementById("ew_config3").innerHTML = data["ew"];
-                    document.getElementById("brrow_config").innerHTML = data["brrow"];
-
-                }
-            })
-        }
-        EW_ajax();
-
-        //document.getElementById("ecard1").innerHTML = 111;
-        //document.getElementById("ecard2").innerHTML = "<li>工学部：<span>2208</span>人</li><li>高等职业技术（国际）学院：<span>1299</span>人</li><li>经济与管理学院：<span>1272</span>人</li><li>文理学部：<span>548</span>人</li><li>应用艺术设计学院：<span>432</span>人</li>";
-
-        var sex_params = { "data": "sex", "type": "column" }
-        function sex_ajax() {
-            $.ajax({
-                type:"GET",
+                type: "get",
                 url: "/Service/DataShow.ashx",
-                data: sex_params,
-                dataType: "text",
+                data: meal,
+                dataType: 'text',
                 success: function (data) {
                     data = eval("(" + data + ")");
-                    //数据分配
-                    var items = data;
+                    //document.getElementById("L_month").innerText = meal["month"].replace("个月", "");
 
-                    // 路径配置
-                    require.config({
-                        paths: {
-                            echarts: 'http://echarts.baidu.com/build/dist'
+                    document.getElementById("L_zao").innerText = data["L_month"][0];
+                    document.getElementById("L_zhong").innerText = data["L_month"][1];
+                    document.getElementById("L_wan").innerText = data["L_month"][2];
+                    document.getElementById("L_ye").innerText = data["L_month"][3];
+
+                    document.getElementById("N_zao").innerText = data["N_month"][0];
+                    document.getElementById("N_zhong").innerText = data["N_month"][1];
+                    document.getElementById("N_wan").innerText = data["N_month"][2];
+                    document.getElementById("N_ye").innerText = data["N_month"][3];
+                    //统计低消费个数
+                    var count = 0;
+                    var zero = 0;
+                    if (meal["user"] != null) {
+                        if (data["st_month"][5].indexOf("男") > 0) {
+                            if (data["st_month"][0] >= data["L_month"][0])
+                                document.getElementById("st_zao").style.color = "red";
+                            if (data["st_month"][0] < data["L_month"][0]) {
+                                document.getElementById("st_zao").style.color = "#33cc66";
+                                if (data["st_month"][0] == '0')
+                                    zero++;
+                                else
+                                    count++;
+                            }
+                            if (data["st_month"][1] >= data["L_month"][1])
+                                document.getElementById("st_zhong").style.color = "red";
+                            if (data["st_month"][1] < data["L_month"][1]) {
+                                document.getElementById("st_zhong").style.color = "#33cc66";
+                                if (data["st_month"][0] == '0')
+                                    zero++;
+                                else
+                                    count++;
+                            }
+                            if (data["st_month"][2] >= data["L_month"][2])
+                                document.getElementById("st_wan").style.color = "red";
+                            if (data["st_month"][2] < data["L_month"][2]) {
+                                document.getElementById("st_wan").style.color = "#33cc66";
+                                if (data["st_month"][0] == '0')
+                                    zero++;
+                                else
+                                    count++;
+                            }
+                            if (data["st_month"][3] >= data["L_month"][3])
+                                document.getElementById("st_ye").style.color = "red";
+                            if (data["st_month"][3] < data["L_month"][3]) {
+                                document.getElementById("st_ye").style.color = "#33cc66";
+                                //count++;
+                            }
                         }
-                    });
-
-                    // 使用
-                    require(
-                        [
-                            'echarts',
-                            'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
-                        ],
-                        function (ec) {
-                            // 基于准备好的dom，初始化echarts图表
-                            var myChart = ec.init(document.getElementById('salarychart'));
-
-                            var option = {
-                                tooltip: {
-                                    show: true
-                                },
-                                legend: {
-                                    data: ['人数']
-                                },
-                                xAxis: [
-                                    {
-                                        type: 'category',
-                                        data: items["xAxis"]
-                                    }
-                                ],
-                                yAxis: [
-                                    {
-                                        type: 'value'
-                                    }
-                                ],
-                                series: [
-                                    {
-                                        "name": "人数",
-                                        "type": "bar",
-                                        "data": items["data"][0]["data"]
-                                    }
-                                ]
-                            };
-
-                            // 为echarts对象加载数据
-                            myChart.setOption(option);
+                        if (data["st_month"][5].indexOf("女") > 0) {
+                            if (data["st_month"][0] >= data["N_month"][0])9
+                                document.getElementById("st_zao").style.color = "red";
+                            if (data["st_month"][0] < data["N_month"][0]) {
+                                document.getElementById("st_zao").style.color = "#33cc66";
+                                if (data["st_month"][0] == '0')
+                                    zero++;
+                                else
+                                    count++;
+                            }
+                            if (data["st_month"][1] >= data["N_month"][1])
+                                document.getElementById("st_zhong").style.color = "red";
+                            if (data["st_month"][1] < data["N_month"][1]) {
+                                document.getElementById("st_zhong").style.color = "#33cc66";
+                                if (data["st_month"][0] == '0')
+                                    zero++;
+                                else
+                                    count++;
+                            }
+                            if (data["st_month"][2] >= data["N_month"][2])
+                                document.getElementById("st_wan").style.color = "red";
+                            if (data["st_month"][2] < data["N_month"][2]) {
+                                document.getElementById("st_wan").style.color = "#33cc66";
+                                if (data["st_month"][0] == '0')
+                                    zero++;
+                                else
+                                    count++;
+                            }
+                            if (data["st_month"][3] >= data["N_month"][3])
+                                document.getElementById("st_ye").style.color = "red";
+                            if (data["st_month"][3] < data["N_month"][3]) {
+                                document.getElementById("st_ye").style.color = "#33cc66";
+                                //count++;
+                            }
                         }
-                    );
+                        if (count >= 3) {
+                            document.getElementById("st_jl").innerText = "※请注意该生疑似低消费人群※";
+                        }
+                        if (count == 2) {
+                            document.getElementById("st_jl").innerText = "※请注意该生应给予重视※";
+                        }
+                        if (count <= 1) {
+                            document.getElementById("st_jl").innerText = "※该生消费水平正常※";
+                        }
+                        if (zero >= 3) {
+                            document.getElementById("st_jl").innerText = "※请注意该生已连续多月未消费※";
+                        }
+                        if (zero == 2) {
+                            document.getElementById("st_jl").innerText = "※请注意该生可能饮食不规律※";
+                        }
+                        document.getElementById("st_zao").innerText = data["st_month"][0];
+                        document.getElementById("st_zhong").innerText = data["st_month"][1];
+                        document.getElementById("st_wan").innerText = data["st_month"][2];
+                        document.getElementById("st_ye").innerText = data["st_month"][3];
+                        document.getElementById("st_xh").innerText = data["st_month"][5];
+                    }
                 }
             })
         }
-        sex_ajax();
+        //初始化
+        meal_ajax();
 
         //鼠标事件
         $(".row-cot1").mouseover(function () {

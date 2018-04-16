@@ -221,6 +221,7 @@
     <Content Include="Content\css\framework-login.css" />
     <Content Include="Content\css\framework-theme.css" />
     <Content Include="Content\css\framework-ui.css" />
+    <Content Include="Content\css\sb-admin-2.css" />
     <Content Include="Content\earlywarning.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -501,6 +502,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.animateNumber.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -547,6 +549,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service\DataShow.ashx" />
     <Content Include="Service\EarlyWarning.ashx" />
+    <Content Include="Views\Home\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

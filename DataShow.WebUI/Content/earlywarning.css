@@ -42,7 +42,7 @@
 
 #control-2{ width:300px; height:auto; margin:0 0 20px 10px; float:left; overflow:hidden;}
 #control-3{ width:250px; height:auto; margin:0 0 10px 10px; float:left; overflow:hidden;}
-#control-4,#control-4-1{ width:350px; height:auto; margin:0 0 10px 10px; float:left; overflow:hidden;}
+/*#control-4,#control-4-1{ width:350px; height:auto; margin:0 0 10px 10px; float:left; overflow:hidden;}*/
 #control-4-1 .sub:link,.sub:visited{color:Black;border:1px solid #CCC;text-decoration:none;background-color:#FFF;padding:2px;display:block;text-align:center;width:50px;float:right;}
 #control-4-1 .sub:hover,.sub:active{border:1px solid #999; background-color:#FFFFCC;}
 #control-4-1 #boygirl span{font-weight:600;font-size:14px;color:#444;}

@@ -206,14 +206,14 @@ namespace DataShow.Domain
                     continue;
                 }
                 if (i == 0)
-                    pie += " {name: '" + dt.Tables[0].Rows[i][0].ToString() + "',y:" + dt.Tables[0].Rows[i][1].ToString() + ",sliced: true,selected: true}";
+                    pie += " {value:" + dt.Tables[0].Rows[i][1].ToString() + ", name:'" + dt.Tables[0].Rows[i][0].ToString() + "'}";
                 else
-                    pie += string.Format(",['{0}', {1}]", dt.Tables[0].Rows[i][0].ToString(), dt.Tables[0].Rows[i][1].ToString());
+                    pie += ",{value:" + dt.Tables[0].Rows[i][1].ToString() + ", name:'" + dt.Tables[0].Rows[i][0].ToString() + "'}";
 
                 sum += Double.Parse(dt.Tables[0].Rows[i][1].ToString());
             }
             if (qita > 0)
-                pie += string.Format(",['其他', {0}]", qita);
+                pie += string.Format(",{value:{0}, name:'其他'}", qita);
             str += pie + "],time:\"" + begtime + "-" + endtime + "\",title:\"" + title + "\",sum:" + sum + "}";
             return str;
         }
