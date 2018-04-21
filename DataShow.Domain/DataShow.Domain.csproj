@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="DataSetConvertJson.cs" />
     <Compile Include="DBUtility.cs" />
+    <Compile Include="ExportClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

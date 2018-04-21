@@ -2,548 +2,449 @@
     ViewBag.Title = "Home Page";
 }
 
-<style>
-    #copyrightcontent {
-        height: 30px;
-        line-height: 29px;
-        overflow: hidden;
-        position: absolute;
-        top: 100%;
-        margin-top: -30px;
-        width: 100%;
-        background-color: #fff;
-        border: 1px solid #e6e6e6;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .dashboard-stats {
-        float: left;
-        width: 20%;
-    }
-
-    .dashboard-stats-item {
-        position: relative;
-        overflow: hidden;
-        color: #fff;
-        cursor: pointer;
-        height: 105px;
-        margin-right: 25px;
-        margin-bottom: 10px;
-        padding: 20px 20px;
-    }
-
-        .dashboard-stats-item .m-top-none {
-            margin-top: 2px;
-        }
-
-        .dashboard-stats-item h2 {
-            font-size: 35px;
-            font-family: inherit;
-            line-height: 1.1;
-            font-weight: 500;
-        }
-
-        .dashboard-stats-item h5 {
-            font-size: 14px;
-            font-family: inherit;
-            margin-top: 3px;
-            line-height: 1.1;
-        }
-
-
-        .dashboard-stats-item .stat-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 30px;
-            opacity: .3;
-        }
-
-    .dashboard-stats i.fa.stats-icon {
-        width: 50px;
-        padding: 20px;
-        font-size: 50px;
-        text-align: center;
-        color: #fff;
-        height: 50px;
-        border-radius: 10px;
-    }
-
-    .panel-default {
-        border: none;
-        border-radius: 0px;
-        margin-bottom: 0px;
-        box-shadow: none;
-        -webkit-box-shadow: none;
-    }
-
-        .panel-default > .panel-heading {
-            color: #777;
-            background-color: #fff;
-            border-color: #e6e6e6;
-            padding: 10px 10px;
-        }
-
-        .panel-default > .panel-body {
-            padding: 10px;
-            padding-bottom: 0px;
-        }
-
-            .panel-default > .panel-body ul {
-                overflow: hidden;
-                padding: 0;
-                margin: 0px;
-                margin-top: -5px;
-            }
-
-                .panel-default > .panel-body ul li {
-                    line-height: 27px;
-                    list-style-type: none;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                }
-
-                    .panel-default > .panel-body ul li .time {
-                        color: #a1a1a1;
-                        float: right;
-                        padding-right: 5px;
-                    }
-</style>
 <link href="~/Content/earlywarning.css" rel="stylesheet" />
+<!--highcharts-->
+<script src="~/Content/highcharts/highcharts.js" type="text/javascript"></script>
+<script src="~/Content/highcharts/highcharts-more.js" type="text/javascript"></script>
+<script src="~/Content/highcharts/exporting.js" type="text/javascript"></script>
+<script src="~/Content/highcharts/highcharts-3d.js" type="text/javascript"></script>
+<script src="~/Content/highcharts/export-csv.js" type="text/javascript"></script>
 
-<div class="row">
-    <div class="col-lg-10">
-        <div class="row-list">
-            <div class="row-cot1 databox">
-                <div class="cont">
-                    <div class="cont-logo"><img src="~/Content/img/ecard.png" width="40px" height="40px" /></div>
-                    <div class="cont-2">
-                        <div class="cont-content">消费预警<span id="ecard1">0</span>人</div>
-                        <div class="cont-beizhu">截止昨天连续<span id="ew_config">3</span>天无消费</div>
-                    </div>
-                    <div id="ew" class="configure"><img src="../../Content/16x16/config.png" alt="设置" /></div>
+<div class="row tile_count">
+    <div class="row-list">
+        <div class="row-cot1 databox">
+            <div class="cont">
+                <div class="cont-logo"><img src="~/Content/images/ecard.png" width="40px" height="40px" /></div>
+                <div class="cont-2">
+                    <div class="cont-content">消费预警<span id="ecard1">0</span>人</div>
+                    <div class="cont-beizhu">截止昨天连续<span id="ew_config">3</span>天无消费</div>
                 </div>
-                <ul id="ecard2" style="display:none"></ul>
+                <div id="ew" class="configure"><img src="~/Content/images/config.png" alt="设置" /></div>
             </div>
+            <ul id="ecard2" style="display:none"></ul>
         </div>
-        <div class="row-list">
-            <div class="row-cot2 databox">
-                <div class="cont">
-                    <div class="cont-logo"><img src="~/Content/img/ecard.png" width="40px" height="40px" /></div>
-                    <div class="cont-2">
-                        <div class="cont-content">图书预警<span id="library1">0</span>人</div>
-                        <div class="cont-beizhu">近<span id="brrow_config">2</span>个月无借阅记录</div>
-                    </div>
-                    <div id="brrow" class="configure"><img src="../../Content/16x16/config.png" alt="设置" /></div>
-                </div>
-                <ul id="library2" style="display:none"></ul>
-            </div>
-        </div>
-        <div class="row-list">
-            <div class="row-cot3 databox">
-                <div class="cont">
-                    <div class="cont-logo"><img src="~/Content/img/pe.png" width="40px" height="40px" /></div>
-                    <div class="cont-2">
-                        <div class="cont-content">健康预警<span id="pe1">0</span>人</div>
-                        <div class="cont-beizhu">学生肥胖人数统计</div>
-                    </div>
-                </div>
-                <ul id="pe2" style="display:none"></ul>
-            </div>
-        </div>
-        <div class="row-list">
-            <div class="row-cot4 databox">
-                <div class="cont">
-                    <div class="cont-logo"><img src="~/Content/img/yiliao.png" width="40px" height="40px" /></div>
-                    <div class="cont-2">
-                        <div class="cont-content">医务预警<span id="yiliao1">0</span>人</div>
-                        <div class="cont-beizhu">昨天挂号人数</div>
-                    </div>
-                </div>
-                <ul id="yiliao2" style="display:none"></ul>
-            </div>
-        </div>
-        <div style="clear:both"></div>
     </div>
-    <div class="col-lg-10">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <span class="h3">学生预警统计</span>
-                    </div>
-                    <div class="panel-body">
-                        <div id="yjbyxxnj" style="width:95%; height:250px;"></div>
-                    </div>
+    <div class="row-list">
+        <div class="row-cot2 databox">
+            <div class="cont">
+                <div class="cont-logo"><img src="~/Content/images/ecard.png" width="40px" height="40px" /></div>
+                <div class="cont-2">
+                    <div class="cont-content">图书预警<span id="library1">0</span>人</div>
+                    <div class="cont-beizhu">近<span id="brrow_config">2</span>个月无借阅记录</div>
+                </div>
+                <div id="brrow" class="configure"><img src="~/Content/images/config.png" alt="设置" /></div>
+            </div>
+            <ul id="library2" style="display:none"></ul>
+        </div>
+    </div>
+    <div class="row-list">
+        <div class="row-cot3 databox">
+            <div class="cont">
+                <div class="cont-logo"><img src="~/Content/images/pe.png" width="40px" height="40px" /></div>
+                <div class="cont-2">
+                    <div class="cont-content">健康预警<span id="pe1">0</span>人</div>
+                    <div class="cont-beizhu">学生肥胖人数统计</div>
                 </div>
             </div>
-            <div id="control-4-1" class="col-lg-6">
-                <div class="panel panel-yellow">
-                    <div class="panel-heading">
-                        <span class="h3">学生人均消费预警</span>
-                    </div>
-                    <div class="panel-body">
-                        <div style="width:100%; height:auto; margin-top:10px; font-size:13px; float:left">
-                            <div style="width:200px; height:28px; float:left; margin-left:20px; vertical-align:middle; overflow:hidden">
-                                学号：<input id="XH" style="height:20px;line-height:20px; margin-top:3px" type="text" size="15" />
-                            </div>
-                            <a class="sub" id="submit_meal" href="javascript:void(0)" style="margin-right:60px; margin-left:20px">检索</a>
-                        </div>
-                        <div style="width:100%; height:auto; margin-top:5px; float:left">
-                            <a class="sub month" href="javascript:void(0)" style="margin-left:20px; float:left">三个月</a>
-                            <a class="sub month" href="javascript:void(0)" style="margin-left:10px; float:left">六个月</a>
-                            <a class="sub month" href="javascript:void(0)" style="margin-left:10px; float:left">九个月</a>
-                            <a class="sub month" href="javascript:void(0)" style="width:80px; margin-left:10px; float:left">十二个月</a>
-                        </div>
-                        <div style="width:100%;height:auto; margin:5px 0 0 0; padding-left:5px; font-size:13px; line-height:25px; float:left; clear:both">
-                            <span id="st_jl" style="height:20px; color:Red">&nbsp;</span>
-                            <table class="bordered">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>早餐</th>
-                                        <th>午餐</th>
-                                        <th>晚餐</th>
-                                        <th>夜宵</th>
-                                    </tr>
-                                </thead>
-                                <tr>
-                                    <td><span id="st_xh" style=" color:#33CC66">某同学</span></td>
-                                    <td><span id="st_zao">0.0</span></td>
-                                    <td><span id="st_zhong">0.0</span></td>
-                                    <td><span id="st_wan">0.0</span></td>
-                                    <td><span id="st_ye">0.0</span></td>
-                                </tr>
-                                <tr>
-                                    <td>全校男生</td>
-                                    <td><span id="L_zao">0.0</span></td>
-                                    <td><span id="L_zhong">0.0</span></td>
-                                    <td><span id="L_wan">0.0</span></td>
-                                    <td><span id="L_ye">0.0</span></td>
-                                </tr>
-                                <tr>
-                                    <td>全校女生</td>
-                                    <td><span id="N_zao">0.0</span></td>
-                                    <td><span id="N_zhong">0.0</span></td>
-                                    <td><span id="N_wan">0.0</span></td>
-                                    <td><span id="N_ye">0.0</span></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+            <ul id="pe2" style="display:none"></ul>
+        </div>
+    </div>
+    <div class="row-list">
+        <div class="row-cot4 databox">
+            <div class="cont">
+                <div class="cont-logo"><img src="~/Content/images/yiliao.png" width="40px" height="40px" /></div>
+                <div class="cont-2">
+                    <div class="cont-content">医务预警<span id="yiliao1">0</span>人</div>
+                    <div class="cont-beizhu">昨天挂号人数</div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <span class="h3">晚归学生</span>
+            <ul id="yiliao2" style="display:none"></ul>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>学生实时预警统计</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" style="min-width:auto;" role="menu">
+                            <li>
+                                <a href="JavaScript:void(0);">刷新</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="xsssyjtj_container" style="height:362px">
+                这里是图表
+            </div>
+        </div>
+    </div>
+    <div id="control-4-1" class="col-md-5 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>学生人均消费预警</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" style="min-width:auto;" role="menu">
+                            <li>
+                                <a href="JavaScript:void(0);">刷新</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" style="height:362px">
+                <div style="width:100%; height:auto; margin-top:10px; font-size:13px; float:left">
+                    <div style="width:200px; height:28px; float:left; margin-left:20px; vertical-align:middle; overflow:hidden">
+                        学号：<input id="XH" style="height:20px;line-height:20px; margin-top:3px" type="text" size="15" />
                     </div>
-                    <div class="panel-body">
-                        <div id="wgxs" style="width:95%; height:250px;"></div>
-                    </div>
+                    <a class="sub" id="submit_meal" href="javascript:void(0)" style="margin-right:60px; margin-left:20px">检索</a>
+                </div>
+                <div style="width:100%; height:auto; margin-top:5px; float:left">
+                    <a class="sub month" href="javascript:void(0)" style="margin-left:20px; float:left">三个月</a>
+                    <a class="sub month" href="javascript:void(0)" style="margin-left:10px; float:left">六个月</a>
+                    <a class="sub month" href="javascript:void(0)" style="margin-left:10px; float:left">九个月</a>
+                    <a class="sub month" href="javascript:void(0)" style="width:80px; margin-left:10px; float:left">十二个月</a>
+                </div>
+                <div style="width:100%;height:auto; margin:5px 0 0 0; padding-left:5px; font-size:13px; line-height:25px; float:left; clear:both">
+                    <span id="st_jl" style="height:20px; color:Red">&nbsp;</span>
+                    <table class="bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>早餐</th>
+                                <th>午餐</th>
+                                <th>晚餐</th>
+                                <th>夜宵</th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td><span id="st_xh" style=" color:#33CC66">某同学</span></td>
+                            <td><span id="st_zao">0.0</span></td>
+                            <td><span id="st_zhong">0.0</span></td>
+                            <td><span id="st_wan">0.0</span></td>
+                            <td><span id="st_ye">0.0</span></td>
+                        </tr>
+                        <tr>
+                            <td>全校男生</td>
+                            <td><span id="L_zao">0.0</span></td>
+                            <td><span id="L_zhong">0.0</span></td>
+                            <td><span id="L_wan">0.0</span></td>
+                            <td><span id="L_ye">0.0</span></td>
+                        </tr>
+                        <tr>
+                            <td>全校女生</td>
+                            <td><span id="N_zao">0.0</span></td>
+                            <td><span id="N_zhong">0.0</span></td>
+                            <td><span id="N_wan">0.0</span></td>
+                            <td><span id="N_ye">0.0</span></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-            <div class="col-lg-12">
-                <div class="panel panel-green">
-                    <div class="panel-heading">
-                        <span class="h3">学生预警统计</span>
-                    </div>
-                    <div class="panel-body">
-                        <div id="yjbyfdy" style="width:95%; height:250px;"></div>
-                    </div>
-                </div>
+        </div>
+    </div>
+    <div class="col-md-7 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>晚归学生分布情况</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" style="min-width:auto;" role="menu">
+                            <li>
+                                <a href="JavaScript:void(0);">刷新</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="wgxsfbqk_container" style="height:362px">
+                这里是图表
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>学生预警（按辅导员分类）</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" style="min-width:auto;" role="menu">
+                            <li>
+                                <a href="JavaScript:void(0);">刷新</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="xsyj_container" style="height:362px">
+                这里是图表
             </div>
         </div>
     </div>
 </div>
 
-<script src="~/Scripts/ECharts/echarts.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $.ajax({
-            type: "GET",
-            url: "/Service/DataShow.ashx",
-            data: { "data": "EW" },
-            dataType: "text",
-            success: function (data) {
-                data = eval("(" + data + ")");
-                //数据分配
-                document.getElementById("ecard1").innerHTML = data["ecard"][1];
-                document.getElementById("ecard2").innerHTML = data["ecard"][0];
-                document.getElementById("library1").innerHTML = data["library"][1];
-                document.getElementById("library2").innerHTML = data["library"][0];
-                document.getElementById("pe1").innerHTML = data["pe"][1];
-                document.getElementById("pe2").innerHTML = data["pe"][0];
-                document.getElementById("yiliao1").innerHTML = data["yiliao"][1];
-                document.getElementById("yiliao2").innerHTML = data["yiliao"][0];
-                //document.getElementById("ew_config").innerHTML = data["ew"];
-                //document.getElementById("ew_config2").innerHTML = data["ew"];
-                //document.getElementById("ew_config3").innerHTML = data["ew"];
-                document.getElementById("brrow_config").innerHTML = data["brrow"];
+        //顶部预警展示
+        var ew_params = { "data": "ew" };
+        function ew_ajax() {
+            $.ajax({
+                type: "GET",
+                url: "/Service/DataShow.ashx",
+                data: ew_params,
+                dataType: "text",
+                success: function (data) {
+                    data = eval("(" + data + ")");
+                    //数据分配
+                    document.getElementById("ecard1").innerHTML = data["ecard"][1];
+                    document.getElementById("ecard2").innerHTML = data["ecard"][0];
+                    document.getElementById("library1").innerHTML = data["library"][1];
+                    document.getElementById("library2").innerHTML = data["library"][0];
+                    document.getElementById("pe1").innerHTML = data["pe"][1];
+                    document.getElementById("pe2").innerHTML = data["pe"][0];
+                    document.getElementById("yiliao1").innerHTML = data["yiliao"][1];
+                    document.getElementById("yiliao2").innerHTML = data["yiliao"][0];
+                    document.getElementById("brrow_config").innerHTML = data["brrow"];
+                }
+            })
+        };
+        //学生实时预警统计
+        var xsssyjtj_params = { "data": "xsssyjtj", "type": "column" };
+        function xsssyjtj_ajax() {
+            $.ajax({
+                type: "GET",
+                url: "/Service/EarlyWarning.ashx",
+                data: xsssyjtj_params,
+                dataType: "text",
+                success: function (data) {
+                    //将json字符串转换为json对象
+                    var items = eval("(" + data + ")");
 
-            }
-        })
-        $.ajax({
-            type:"GET",
-            url: "/Service/EarlyWarning.ashx",
-            data: { "data": "XSYJByXYAndNJ", "type": "column" },
-            dataType: "text",
-            success: function (data) {
-                data = eval("(" + data + ")");
-                //数据分配
-                var items = data;
-
-                // 路径配置
-                require.config({
-                    paths: {
-                        echarts: 'http://echarts.baidu.com/build/dist'
-                    }
-                });
-
-                // 使用
-                require(
-                    [
-                        'echarts',
-                        'echarts/chart/line',
-                        'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
-                    ],
-                    function (ec) {
-                        // 基于准备好的dom，初始化echarts图表
-                        var myChart = ec.init(document.getElementById('yjbyxxnj'));
-
-                        var option = {
+                    $('#xsssyjtj_container').highcharts({
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: null
+                        },
+                        subtitle: {
+                            text: null
+                        },
+                        xAxis: {
+                            categories: items["xAxis"],
                             title: {
-                                text: ''
-                            },
-                            tooltip: {
-                                show: true
-                            },
-                            legend: {
-                                data: ['2014', '2015', '2016', '2017']
-                            },
-                            toolbox: {
-                                show: true,
-                                feature: {
-                                    dataView: { show: true, readOnly: false },
-                                    magicType: { show: true, type: ['line', 'bar'] },
-                                    restore: { show: true },
-                                    saveAsImage: { show: true }
-                                }
-                            },
-                            xAxis: [
-                                {
-                                    type: 'category',
-                                    data: items["xAxis"]
-                                }
-                            ],
-                            yAxis: [
-                                {
-                                    type: 'value'
-                                }
-                            ],
-                            series: [
-                                {
-                                    "name": "2014",
-                                    "type": "bar",
-                                    "data": items["data"][0]["data"]
-                                },
-                                {
-                                    "name": "2015",
-                                    "type": "bar",
-                                    "data": items["data"][1]["data"]
-                                },
-                                {
-                                    "name": "2016",
-                                    "type": "bar",
-                                    "data": items["data"][2]["data"]
-                                },
-                                {
-                                    "name": "2017",
-                                    "type": "bar",
-                                    "data": items["data"][3]["data"]
-                                }
-                            ]
-                        };
-
-                        // 为echarts对象加载数据
-                        myChart.setOption(option);
-                    }
-                );
-            }
-        })
-        $.ajax({
-            type: "GET",
-            url: "/Service/EarlyWarning.ashx",
-            data: { "data": "XSYJByFDY", "type": "column" },
-            dataType: "text",
-            success: function (data) {
-                data = eval("(" + data + ")");
-                //数据分配
-                var items = data;
-
-                // 路径配置
-                require.config({
-                    paths: {
-                        echarts: 'http://echarts.baidu.com/build/dist'
-                    }
-                });
-
-                // 使用
-                require(
-                    [
-                        'echarts',
-                        'echarts/chart/line',
-                        'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
-                    ],
-                    function (ec) {
-                        // 基于准备好的dom，初始化echarts图表
-                        var myChart = ec.init(document.getElementById('yjbyfdy'));
-
-                        var option = {
+                                text: null
+                            }
+                        },
+                        yAxis: {
                             title: {
-                                text: ''
-                            },
-                            tooltip: {
-                                show: true
-                            },
-                            legend: {
-                                data: ['人数']
-                            },
-                            toolbox: {
-                                show: true,
-                                feature: {
-                                    dataView: { show: true, readOnly: false },
-                                    magicType: { show: true, type: ['line', 'bar'] },
-                                    restore: { show: true },
-                                    saveAsImage: { show: true }
+                                text: null
+                            }
+                        },
+                        tooltip: {
+                            valueSuffix: ' 人'
+                        },
+                        plotOptions: {
+                            column: {
+                                dataLabels: {
+                                    enabled: false
                                 }
-                            },
-                            xAxis: [
-                                {
-                                    type: 'category',
-                                    data: items["xAxis"]
-                                }
-                            ],
-                            yAxis: [
-                                {
-                                    type: 'value'
-                                }
-                            ],
-                            series: [
-                                {
-                                    "name": "人数",
-                                    "type": "bar",
-                                    "data": items["data"][0]["data"]
-                                }
-                            ]
-                        };
+                            }
+                        },
+                        legend: {
+                            align: 'right',
+                            verticalAlign: 'top',
+                            x: -10,
+                            y: 30,
+                            floating: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                            name: items["data"][0].name,
+                            data: items["data"][0]["data"]
+                        },{
+                            name: items["data"][1].name,
+                            data: items["data"][1]["data"]
+                        },{
+                            name: items["data"][2].name,
+                            data: items["data"][2]["data"]
+                        },{
+                            name: items["data"][3].name,
+                            data: items["data"][3]["data"]
+                        }]
+                    });
+                }
+            })
+        };
+        //学生预警(按辅导员统计）
+        var xsyj_params = { "data": "xsyj", "type": "column" };
+        function xsyj_ajax() {
+            $.ajax({
+                type: "GET",
+                url: "/Service/EarlyWarning.ashx",
+                data: xsyj_params,
+                dataType: "text",
+                success: function (data) {
+                    //将json字符串转换为json对象
+                    var items = eval("(" + data + ")");
 
-                        // 为echarts对象加载数据
-                        myChart.setOption(option);
-                    }
-                );
-            }
-        })
-        $.ajax({
-            type: "GET",
-            url: "/Service/EarlyWarning.ashx",
-            data: { "data": "WGXS", "type": "pie" },
-            dataType: "text",
-            success: function (data) {
-                data = eval("(" + data + ")");
-                //数据分配
-                var items = data;
-
-                // 路径配置
-                require.config({
-                    paths: {
-                        echarts: 'http://echarts.baidu.com/build/dist'
-                    }
-                });
-
-                // 使用
-                require(
-                    [
-                        'echarts',
-                        'echarts/chart/funnel',
-                        'echarts/chart/pie' // 使用柱状图就加载bar模块，按需加载
-                    ],
-                    function (ec) {
-                        // 基于准备好的dom，初始化echarts图表
-                        var myChart = ec.init(document.getElementById('wgxs'));
-
-                        var option = {
+                    $('#xsyj_container').highcharts({
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: null
+                        },
+                        subtitle: {
+                            text: null
+                        },
+                        xAxis: {
+                            categories: items["xAxis"],
                             title: {
-                                text: ''
-                            },
-                            tooltip: {
-                                trigger: 'item',
-                                formatter: "{a} <br/>{b} : {c} ({d}%)"
-                            },
-                            legend: {
-                                orient: 'vertical',
-                                x: 'left',
-                                data: ['人数']
-                            },
-                            toolbox: {
-                                show: true,
-                                feature: {
-                                    mark: { show: true },
-                                    dataView: { show: true, readOnly: false },
-                                    magicType: {
-                                        show: true,
-                                        type: ['pie', 'funnel'],
-                                        option: {
-                                            funnel: {
-                                                x: '25%',
-                                                width: '50%',
-                                                funnelAlign: 'left',
-                                                max: 1548
-                                            }
-                                        }
-                                    },
-                                    restore: { show: true },
-                                    saveAsImage: { show: true }
+                                text: null
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: null
+                            }
+                        },
+                        tooltip: {
+                            valueSuffix: ' 人'
+                        },
+                        plotOptions: {
+                            column: {
+                                dataLabels: {
+                                    enabled: false
                                 }
-                            },
-                            calculable: true,
-                            series: [
-                                {
-                                    name: "晚归学生",
-                                    type: "pie",
-                                    radius: '55%',
-                                    center: ['50%', '60%'],
-                                    data: items["pie"]
+                            }
+                        },
+                        legend: {
+                            align: 'right',
+                            verticalAlign: 'top',
+                            x: -10,
+                            y: 30,
+                            floating: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                            name: '预警人数',
+                            data: items["data"][0]["data"]
+                        }]
+                    });
+                }
+            })
+        };
+        //晚归学生分布情况
+        var wgxsfbqk_params = { "data": "wgxsfbqk", "type": "pie" };
+        function wgxsfbqk_ajax() {
+            $.ajax({
+                type: "GET",
+                url: "/Service/EarlyWarning.ashx",
+                data: wgxsfbqk_params,
+                dataType: "text",
+                success: function (data) {
+                    //将json字符串转换为json对象
+                    var items = eval("(" + data + ")");
+
+                    // Make monochrome colors and set them as default for all pies
+                    Highcharts.getOptions().plotOptions.pie.colors = (function () {
+                        var colors = [],
+                        base = Highcharts.getOptions().colors[0],
+                        i;
+                        for (i = 0; i < 10; i += 1) {
+                            // Start out with a darkened base color (negative brighten), and end
+                            // up with a much brighter color
+                            colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
+                        }
+                        return colors;
+                    }());
+                    $('#wgxsfbqk_container').highcharts({
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false
+                        },
+                        title: {
+                            text: null
+                        },
+                        tooltip: {
+                            headerFormat: '{series.name}<br>',
+                            pointFormat: '{point.name}: <b>{point.percentage:.1f}%({point.y}人)</b>'
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}<b>: {point.y}({point.percentage:.1f}%)</b>',
+                                    style: {
+                                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                    }
                                 }
-                            ]
-                        };
-
-                        // 为echarts对象加载数据
-                        myChart.setOption(option);
-                    }
-                );
-            }
-        })
-
-        var meal = { "month": "三个月", "data": "meal" };
-        $(".month").click(function () {
-            meal = $.extend(meal, { "month": this.innerText });
-            meal_ajax();
-        });
-        $("#submit_meal").click(function () {
-            if (document.getElementById("XH").value.length != 11) {
-                alert("输入的学号有误!");
-                return;
-            }
-            meal = $.extend(meal, { "user": document.getElementById("XH").value });
-            meal_ajax();
-        });
-        function meal_ajax() {
+                            }
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                            type: 'pie',
+                            name: '晚归学生',
+                            data: items["pie"]
+                        }]
+                    });
+                }
+            })
+        };
+        //学生人均消费预警
+        var xsrjxfyj_params = { "month": "三个月", "data": "xsrjxfyj" };
+        function xsrjxfyj_ajax() {
             $.ajax({
                 type: "get",
                 url: "/Service/DataShow.ashx",
-                data: meal,
+                data: xsrjxfyj_params,
                 dataType: 'text',
                 success: function (data) {
                     data = eval("(" + data + ")");
@@ -561,7 +462,7 @@
                     //统计低消费个数
                     var count = 0;
                     var zero = 0;
-                    if (meal["user"] != null) {
+                    if (xsrjxfyj_params["user"] != null) {
                         if (data["st_month"][5].indexOf("男") > 0) {
                             if (data["st_month"][0] >= data["L_month"][0])
                                 document.getElementById("st_zao").style.color = "red";
@@ -598,8 +499,8 @@
                             }
                         }
                         if (data["st_month"][5].indexOf("女") > 0) {
-                            if (data["st_month"][0] >= data["N_month"][0])9
-                                document.getElementById("st_zao").style.color = "red";
+                            if (data["st_month"][0] >= data["N_month"][0]) 9
+                            document.getElementById("st_zao").style.color = "red";
                             if (data["st_month"][0] < data["N_month"][0]) {
                                 document.getElementById("st_zao").style.color = "#33cc66";
                                 if (data["st_month"][0] == '0')
@@ -655,11 +556,19 @@
                     }
                 }
             })
-        }
-        //初始化
-        meal_ajax();
-
-        //鼠标事件
+        };
+        $(".month").click(function () {
+            xsrjxfyj_params = $.extend(xsrjxfyj_params, { "month": this.innerText });
+            xsrjxfyj_ajax();
+        });
+        $("#submit_meal").click(function () {
+            if (document.getElementById("XH").value.length != 11) {
+                alert("输入的学号有误!");
+                return;
+            }
+            xsrjxfyj_params = $.extend(xsrjxfyj_params, { "user": document.getElementById("XH").value });
+            xsrjxfyj_ajax();
+        });
         $(".row-cot1").mouseover(function () {
             $(".row-cot1 ul").slideDown("1000");
             $(".row-cot1 .configure").fadeIn("500");
@@ -692,5 +601,21 @@
             $(".row-cot4 ul").slideUp("1000");
             $(".row-cot4 .configure").fadeOut("500");
         });
+
+        //浏览器大小缩放时操作
+        window.onresize = function () {
+            GZL24H_changeDivHeight();
+        }
+        //浏览器宽度
+        var body_width = 0;
+        function GZL24H_changeDivHeight() {
+            ew_ajax();
+            xsssyjtj_ajax();
+            xsyj_ajax();
+            wgxsfbqk_ajax();
+            xsrjxfyj_ajax();
+        }
+        //初始化
+        GZL24H_changeDivHeight();
     });
 </script>

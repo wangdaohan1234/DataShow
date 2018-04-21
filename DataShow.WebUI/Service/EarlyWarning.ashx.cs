@@ -24,8 +24,8 @@ namespace DataShow.WebUI.Service
             string ProName = "";
 
 
-            #region 学生预警（按学院和年级多维度统计）
-            if (context.Request["data"] == "XSYJByXYAndNJ")
+            #region 学生实时预警统计
+            if (context.Request["data"] == "xsssyjtj")
             {
                 //存储过程名称
                 ProName = "EW_XSYJByXYAndNJ";
@@ -37,7 +37,7 @@ namespace DataShow.WebUI.Service
             }
             #endregion
             #region 学生预警（按辅导员统计）
-            if (context.Request["data"] == "XSYJByFDY")
+            if (context.Request["data"] == "xsyj")
             {
                 //存储过程名称
                 ProName = "EW_XSYJByFDY";
@@ -47,8 +47,8 @@ namespace DataShow.WebUI.Service
                 parm[1] = new SqlParameter("@waring", 3);
             }
             #endregion
-            #region 晚归学生（按学院统计）
-            if (context.Request["data"] == "WGXS")
+            #region 晚归学生分布情况
+            if (context.Request["data"] == "wgxsfbqk")
             {
                 //存储过程名称
                 ProName = "EW_WGXS";

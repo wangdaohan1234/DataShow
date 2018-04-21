@@ -2,20 +2,32 @@
     ViewBag.Title = "Show";
 }
 <link href="~/Content/earlywarning.css" rel="stylesheet" />
-<div id="Params" style="background-color:#f3f3f3; width:100%; margin-top:0px; padding-top:8px;">
-    <div id="home_ecard" class="databox">
-        <div class="box over-view-box">
-            <div class="box-title">
-                <span></span>
-                <span style="width:130px; float:left;">&nbsp;&nbsp;校情展示</span>
-                <div class="time" id="item_time"></div>
-            </div>
-            <div class="beizhu">
-                <div class="list_box">&nbsp;</div>
-                以下数据为<span id="item_time_1" style=" color:Red; font-weight:600"></span>学校校情信息统计
-            </div>
+<link href="~/Content/xenon-components.css" rel="stylesheet" type="text/css" />
 
-            <div class="box-body" style="min-height:auto;">
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>校情展示</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" style="min-width:auto;" role="menu">
+                            <li>
+                                <a href="JavaScript:void(0);">刷新</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="xsssyjtj_container" style="height:170px">
                 <!--校园卡-->
                 <div class="xe-widget xe-counter">
                     <div class="xe-icon">
@@ -51,7 +63,7 @@
                     </div>
                     <div class="xe-label">
                         <strong class="num" id="books">0</strong>
-                        <span>馆藏图书(万册)</span>
+                        <span>馆藏图书(册)</span>
                     </div>
                 </div>
                 <div class="xe-widget xe-counter xe-counter-info">
@@ -82,7 +94,7 @@
                     </div>
                 </div>
                 <!--消费-->
-                <div class="xe-widget xe-counter xe-counter-info">
+                @*<div class="xe-widget xe-counter xe-counter-info">
                     <div class="xe-icon">
                         <i class="linecons-user" style="background:#E77843">流</i>
                     </div>
@@ -90,14 +102,14 @@
                         <strong class="num" id="liutong">0</strong>
                         <span>流通卡（张）</span>
                     </div>
-                </div>
+                </div>*@
                 <div class="xe-widget xe-counter xe-counter-info">
                     <div class="xe-icon">
                         <i class="linecons-user" style="background-color:#F8C301">总</i>
                     </div>
                     <div class="xe-label">
                         <strong class="num" id="zonghe">0</strong>
-                        <span>总消费（万元）</span>
+                        <span>总消费（元）</span>
                     </div>
                 </div>
                 <div class="xe-widget xe-counter xe-counter-info">
@@ -118,17 +130,33 @@
                         <span>人均消费（元）</span>
                     </div>
                 </div>
-                <div style=" clear:both"></div>
+                <div style="clear:both"></div>
             </div>
         </div>
     </div>
-    <div id="home_data" class="databox">
-        <div class="box over-view-box">
-            <div class="box-title">
-                <span class="title-icon"><img src="../../Content/16x16/database.png" width="25px" height="25px" /></span>
-                <span style="width:130px; float:left;">&nbsp;&nbsp;详细数据</span>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>详细数据</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" style="min-width:auto;" role="menu">
+                            <li>
+                                <a href="JavaScript:void(0);">刷新</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
             </div>
-            <div class="box-body" style=" min-height:100px;">
+            <div class="x_content" id="xsyj_container" style="height:200px">
                 <table class="bordered">
                     <thead>
                         <tr>
@@ -177,6 +205,8 @@
         </div>
     </div>
 </div>
+
+<script src="~/Scripts/jquery-ui.js" type="text/javascript"></script>
 <script src="~/Scripts/jquery.animateNumber.min.js"></script>
 <script type="text/javascript" language="javascript">
     $(document).ready(function () {
@@ -195,17 +225,17 @@
                 $("#jiaoshi").animateNumber({ number: data["card"]["教职工"] + data["card"]["教授"] }, 4000);
                 $("#stu").animateNumber({ number: data["card"]["本科生"] + data["card"]["专科生"] }, 4000);
                 $("#linshi").animateNumber({ number: data["card"]["校外临时人员"] + data["card"]["校内临时人员"] }, 4000);
-                $("#books").animateNumber({ number: parseInt(data["books"] / 10000) }, 3000);
+                $("#books").animateNumber({ number: parseInt(data["books"]) }, 3000);
                 $("#liutong").animateNumber({ number: data["consume"][0] }, 4000);
-                $("#zonghe").animateNumber({ number: parseInt(data["consume"][1] / 10000) }, 3000);
+                $("#zonghe").animateNumber({ number: parseInt(data["consume"][1]) }, 3000);
                 $("#cishu").animateNumber({ number: data["consume"][2] }, 4000);
 
                 document.getElementById("jiaoshi-1").innerHTML = data["card"]["教职工"] + data["card"]["教授"];
                 document.getElementById("stu-1").innerHTML = data["card"]["本科生"] + data["card"]["专科生"];
                 document.getElementById("linshi-1").innerHTML = data["card"]["校外临时人员"] + data["card"]["校内临时人员"];
-                document.getElementById("books-1").innerHTML = parseInt(data["books"] / 10000);
+                document.getElementById("books-1").innerHTML = parseInt(data["books"]);
                 document.getElementById("liutong-1").innerHTML = data["consume"][0];
-                document.getElementById("zonghe-1").innerHTML = parseInt(data["consume"][1] / 10000);
+                document.getElementById("zonghe-1").innerHTML = parseInt(data["consume"][1]);
                 document.getElementById("cishu-1").innerHTML = data["consume"][2];
                 document.getElementById("renjun-1").innerHTML = data["consume"][3];
 
@@ -224,8 +254,6 @@
                 },
                 3000
                 );
-                document.getElementById("item_time").innerHTML = "最新统计时间：" + data["time"];
-                document.getElementById("item_time_1").innerHTML = data["time"];
                 //图书
                 for (var i = 0; i < data["borrow"].length; i++) {
                     for (var key in data["borrow"][i]) {

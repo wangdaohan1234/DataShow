@@ -1,0 +1,55 @@
+﻿.mmGrid, .mmPaginator
+{
+     font-size: 12px;
+}
+.btnPrice {
+     display: block;
+     width: 16px;
+     height: 16px;
+     margin: 0px auto;
+     background: url(http://sandbox.runjs.cn/uploads/rs/412/rrczw3xl/botton_g1.gif) no-repeat;
+}
+
+.btnPrice:hover {
+     background: url(http://sandbox.runjs.cn/uploads/rs/412/rrczw3xl/botton_g2.gif) no-repeat;
+}
+
+.input_on{
+padding:0px 8px 0pt 3px;
+height:20px;
+border:1px solid #999;
+background-color:#FFFFCC;
+}
+.input_off{
+padding:0px 8px 0pt 3px;
+height:20px;
+border:1px solid #CCC;
+background-color:#FFF;
+}
+.input_move{
+padding:0px 8px 0pt 3px;
+height:20px;
+border:1px solid #999;
+background-color:#FFFFCC;
+}
+.input_out{
+
+padding:0px 8px 0pt 3px;
+height:20px;
+border:1px solid #CCC;
+background-color:#FFF;
+}
+
+.m .jiansuo
+{
+    margin-left:15px;
+    margin-bottom:8px;
+    width:200px;
+    height:23px;
+    float:left;
+    overflow:hidden;
+}
+.btn 
+{
+    padding:2px 5px 2px 5px;
+}

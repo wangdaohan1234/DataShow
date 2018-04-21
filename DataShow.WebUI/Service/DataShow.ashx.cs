@@ -16,8 +16,8 @@ namespace DataShow.WebUI.Service
 
         public void ProcessRequest(HttpContext context)
         {
-            #region 预警
-            if (context.Request["data"] == "EW")
+            #region 顶部预警展示
+            if (context.Request["data"] == "ew")
             {
                 List<string> sts = new List<string>();
                 //消费预警
@@ -106,7 +106,7 @@ namespace DataShow.WebUI.Service
             }
             #endregion
             #region 学生人均消费预警
-            if (context.Request["data"].ToString() == "meal")
+            if (context.Request["data"].ToString() == "xsrjxfyj")
             {
                 string sql = "";
                 string st_sql = "";
@@ -210,7 +210,7 @@ namespace DataShow.WebUI.Service
                                 + " (SELECT DISTINCT STUEMPNO  FROM dbo.ORG_NE_T_TRANSDTL "
                                 + " WHERE ACCDATE = '{0}') AS a) AS a, "
                                 + " (SELECT SUM(AMOUNT) AS AMOUNT,COUNT(*) AS TOTALCOUNT FROM dbo.ORG_NE_T_TRANSDTL "
-                                + " WHERE ACCDATE = '{0}' AND CARDBEFBAL > CARDAFTBAL) AS b", DateTime.Now.AddDays(-1).ToString("yyyyMMdd"));
+                                + " WHERE ACCDATE = '{0}' AND CARDBEFBAL > CARDAFTBAL) AS b", "20180415");
                 string library1 = "SELECT COUNT(*) FROM dbo.ORG_BB_HOLDING";
                 string library2 = string.Format("SELECT TYPENAME,TOTALCOUNT FROM "
                                 + " (SELECT LOGTYPE,COUNT(*) AS TOTALCOUNT FROM dbo.ORG_BB_LOG_CIR "
@@ -218,7 +218,7 @@ namespace DataShow.WebUI.Service
                                 + " GROUP BY LOGTYPE) a "
                                 + " LEFT JOIN "
                                 + " dbo.ORG_BB_LOG_CIRTYPE b "
-                                + " ON a.LOGTYPE = b.LOGTYPE", DateTime.Now.AddDays(-1).ToString("yyyyMMdd"));
+                                + " ON a.LOGTYPE = b.LOGTYPE", "20180415");
                 sts.Add(card);
                 sts.Add(consume);
                 sts.Add(library1);
