@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewBag.Title = "Card";
+}
+
+<!--表格展示部分-->
+<link rel="stylesheet" type="text/css" href="~/Content/src/mmGrid.css" />
+<link href="~/Content/src/themes/mmGrid-bootstrap.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Content/src/mmGrid.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/src/mmPaginator.css" />
+<link href="~/Content/src/themes/mmPaginator-bootstrap.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Content/src/mmPaginator.js"></script>
+<!--日历插件开始-->
+<link href="~/Content/lhgCalendar/lhgcalendar.css" rel="stylesheet" type="text/css" />
+<script src="~/Content/lhgCalendar/lhgcalendar.min.js" type="text/javascript"></script>
+<!--Autocomplete-->
+<link href="~/Content/Jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="~/Content/Jquery-ui/jquery-ui.js" type="text/javascript"></script>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>信息检索</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up" id="jiansuo_btn"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" style="min-width:auto;" role="menu">
+                            <li>
+                                <a href="JavaScript:void(0);">刷新</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" id="jiansuo_content">
+                <!--查询条件组-->
+                <div class="input-group col-xs-12 col-sm-6 col-md-3" style="float:left;padding:0 20px 0 0">
+                    <span class="input-group-addon">学&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+                    <input type="text" class="form-control" id="stuempno" placeholder="请输入学号">
+                </div>
+                <div class="input-group col-xs-12 col-sm-6 col-md-3" style="float:left;padding:0 20px 0 0">
+                    <span class="input-group-addon">姓&nbsp;&nbsp;&nbsp;&nbsp;名</span>
+                    <input type="text" class="form-control" id="custname" placeholder="请输入姓名">
+                </div>
+                <div class="input-group col-xs-12 col-sm-6 col-md-3" style="float:left;padding:0 20px 0 0">
+                    <span class="input-group-addon">姓&nbsp;&nbsp;&nbsp;&nbsp;别</span>
+                    <input type="text" class="form-control" id="sex" placeholder="请输入姓别">
+                </div>
+                <div class="input-group col-xs-12 col-sm-6 col-md-3" style="float:left;padding:0 20px 0 0">
+                    <span class="input-group-addon">类&nbsp;&nbsp;&nbsp;&nbsp;型</span>
+                    <input type="text" class="form-control" id="custtypename" placeholder="请输入类型">
+                </div>
+                <div class="input-group col-xs-12 col-sm-6 col-md-3" style="float:left;padding:0 20px 0 0">
+                    <span class="input-group-addon">学&nbsp;&nbsp;&nbsp;&nbsp;院</span>
+                    <input type="text" class="form-control" id="deptname" placeholder="请输入学院名称">
+                </div>
+                <div class="input-group col-xs-12 col-sm-6 col-md-3" style="float:left;padding:0 20px 0 0">
+                    <span class="input-group-addon">班&nbsp;&nbsp;&nbsp;&nbsp;级</span>
+                    <input type="text" class="form-control" id="classname" placeholder="请输入班级名称">
+                </div>
+                <div class="input-group col-xs-12 col-sm-6 col-md-3" style="float:left;padding:0 20px 0 0">
+                    <span class="input-group-addon">身份证号</span>
+                    <input type="text" class="form-control" id="idno" placeholder="请输入身份证号">
+                </div>
+                <div class="input-group col-xs-6 col-sm-4 col-md-2" style="float:left;">
+                    <button type="button" id="but_export" class="btn btn-warning visible-md-inline visible-lg-inline">导出</button>
+                    <button id="btn" type="button" class="tslyl_submit btn btn-primary pull-right">检索</button>
+                </div>
+                <!--查询条件组-->
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title" id="table_width">
+                <h2>详细数据</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" style="min-width:auto;" role="menu">
+                            <li>
+                                <a href="JavaScript:void(0);">刷新</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" style="overflow:hidden">
+                <table id="mmg"></table>
+                <div id="pg" style="text-align: right; clear:both"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--时间处理函数-->
+<script src="~/Content/TimeObjectUtil/TimeObjectUtil.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //详细数据
+        var cols = [
+                        {title: '学生基本信息', align: 'center', cols: [
+                        { title: '学号', name: 'STUEMPNO', width: 100, sortable: true, align: 'center' },
+                        { title: '姓名', name: 'CUSTNAME', width: 80, sortable: true, align: 'center' },
+                        { title: '性别', name: 'SEX', width: 50, sortable: true, align: 'center' },
+                        { title: '类型', name: 'CUSTTYPENAME', width: 80, sortable: false, align: 'center' },
+                        { title: '身份证号', name: 'IDNO', width: 150, sortable: false, align: 'center' }
+                        ]},
+                        { title: '部门信息', align: 'center', cols: [
+                        { title: '学部/部门', name: 'DEPTNAME', width: 150, sortable: false, align: 'center' },
+                        { title: '班级', name: 'CLASSNAME', width: 60, sortable: false, align: 'center' }
+                        ]},
+                        { title: '联系方式', align: 'center', cols: [
+                        { title: '邮箱', name: 'EMAIL', width: 100, sortable: false, align: 'center', hidden: true },
+                        { title: '电话号码', name: 'TEL', width: 100, sortable: false, align: 'center', hidden: true },
+                        { title: '手机号码', name: 'MOBILE', width: 100, sortable: false, align: 'center', hidden: true },
+                        { title: '家庭住址', name: 'ADDR', width: 150, sortable: false, align: 'center', hidden: true }
+                        ]},
+                        { title: '其他信息', align: 'center', cols: [
+                        { title: '入学日期', name: 'INDATE', width: 60, sortable: false, align: 'center', hidden: true },
+                        { title: '离校日期', name: 'OUTDATE', width: 60, sortable: false, align: 'center', hidden: true },
+                        { title: '开卡日期', name: 'OPENDATE', width: 60, sortable: false, align: 'center', hidden: true },
+                        { title: '注销日期', name: 'CLOSEDATE', width: 60, sortable: false, align: 'center', hidden: true }
+                        ]
+                        }];
+        //检索字段像后台传参:组成方式为"{字段名:值}"
+        $.fn.TransferParams = function () {
+            var st = {};
+            var param = ["stuempno", "custname", "sex", "custtypename", "deptname", "classname", "idno"];
+            for (var i = 0; i < param.length; i++) {
+                if ((document.getElementById(param[i]) != null) && (document.getElementById(param[i]).value != "")) {
+                    st[param[i]] = document.getElementById(param[i]).value;
+                }
+            }
+            $.extend(st, { "data": "CustomerDetail", "type": "tablepaged" });
+            //全局检索参数
+            global_params = st;
+        };
+        //点击检索时操作
+        $('#btn').click(function () {
+            $.fn.TransferParams();
+            $('#pg').load({ page: 1 });
+            mmg.load({ 'page': 1 });
+        });
+        var mmg = $('#mmg').mmGrid({
+            height: 280
+            , width: 940
+		    , cols: cols
+            , indexCol: true
+            , sortName: 'CUSTNAME'
+            , sortStatus: 'desc'
+            , remoteSort: true
+		    , url: '/Service/Card.ashx'
+            , method: 'get'
+            , autoLoad: true
+            , fullWidthRows: true //伸展列宽自动充满表格
+		    , nowrap: false //内容不折行
+		    , plugins: [
+                            $('#pg').mmPaginator({})
+		    ] //分页插件
+        });
+        mmg.on('cellSelected', function (e, item, rowIndex, colIndex) {
+            if ($(e.target).is('.btn-bill')) {
+                e.stopPropagation();  //阻止事件冒泡
+                //tslylclicked(item.NAME);
+            }
+        });
+        $('#btn').click();
+        ///////////////////////////////////////////////////////////////////////
+        //浏览器大小缩放时操作
+        window.onresize = function () {
+            GZL24H_changeDivHeight();
+        }
+        //浏览器宽度
+        var body_width = 0;
+        function GZL24H_changeDivHeight() {
+            //因手机端选择输入框时会触发resize事件，因此执行前先判断浏览器宽度有无变化
+            if (document.getElementById("table_width").clientWidth != body_width) {
+                $.extend(mmg.opts, { width: (document.getElementById("table_width").clientWidth - 10), height: 500 });
+                mmg.resize();
+                if (document.getElementById("table_width").clientWidth < 768) {
+                    $("#jiansuo_btn").removeClass("fa-chevron-up");
+                    $("#jiansuo_btn").addClass("fa-chevron-down");
+                    $("#jiansuo_content").css("display", "none");
+                }
+                else {
+                    $("#jiansuo_btn").removeClass("fa-chevron-down");
+                    $("#jiansuo_btn").addClass("fa-chevron-up");
+                    $("#jiansuo_content").css("display", "block");
+                }
+            }
+            body_width = document.getElementById("table_width").clientWidth;
+        }
+        //浏览器大小缩放时操作
+        GZL24H_changeDivHeight();
+        ///////////////////////////////////////////////////////////////////////
+    });
+</script>
+

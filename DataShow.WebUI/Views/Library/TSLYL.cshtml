@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "RDTS";
+    ViewBag.Title = "TSLYL";
 }
 
 <!--表格展示部分-->
@@ -49,35 +49,29 @@
             <div class="x_content" id="jiansuo_content">
                 <!--查询条件组-->
                 <div class="input-group col-xs-12 col-sm-12 col-md-12" style="float:left;">
-                    <span class="input-group-addon">分类号</span>
-                    <input type="text" class="form-control" id="typecode" placeholder="请输入分类号">
-                </div>
-                <div class="input-group col-xs-12 col-sm-12 col-md-12" style="float:left;">
-                    <span class="input-group-addon">学&nbsp;&nbsp;&nbsp;&nbsp;院</span>
-                    <input type="text" class="form-control" id="yxmc" placeholder="点选或输入学院名称">
-                </div>
-                <div class="input-group col-xs-12 col-sm-12 col-md-12" style="float:left;">
-                    <span class="input-group-addon">TOP</span>
-                    <input type="text" class="form-control" id="top" placeholder="查看前多少名信息">
-                </div>
-                <div class="input-group col-xs-12 col-sm-12 col-md-12" style="float:left;">
                     <span class="input-group-addon">起始日期</span>
-                    <input type="text" class="form-control" id="rdts_begtime" placeholder="点选下拉框中的时间" readonly>
+                    <input type="text" class="form-control" id="tslyl_begtime"placeholder="点选下拉框中的时间" readonly>
                 </div>
                 <div class="input-group col-xs-12 col-sm-12 col-md-12" style="float:left;">
                     <span class="input-group-addon">结束日期</span>
-                    <input type="text" class="form-control" id="rdts_endtime" placeholder="点选下拉框中的时间" readonly>
+                    <input type="text" class="form-control" id="tslyl_endtime"placeholder="点选下拉框中的时间" readonly>
                 </div>
-
+                <script type="text/javascript" charset="utf-8">
+                $(function () {
+                    $('#tslyl_endtime').calendar({ maxDate: '%y-%M-%d', format: 'yyyy-MM-dd' });
+                    $('#tslyl_begtime').calendar({ maxDate: '%y-%M-%d', format: 'yyyy-MM-dd' });
+                });
+                </script>
                 <div class="input-group col-xs-12 col-sm-12 col-md-12" style="float:left;">
                     <span class="visible-xs visible-sm visible-md visible-lg">快速检索</span>
-                    <button type="button" class="rdts_change btn btn-default btn-info">一周</button>
-                    <button type="button" class="rdts_change btn btn-default">两周</button>
-                    <button type="button" class="rdts_change btn btn-default">一月</button>
+                    <button type="button" class="tslyl_change btn btn-default btn-info">一周</button>
+                    <button type="button" class="tslyl_change btn btn-default">两周</button>
+                    <button type="button" class="tslyl_change btn btn-default">一月</button>
+                    <button type="button" class="tslyl_change btn btn-default">一年</button>
                 </div>
                 <div class="input-group col-xs-12 col-sm-12 col-md-12" style="float:left;">
                     <button type="button" id="but_export" class="btn btn-warning visible-md-inline visible-lg-inline">导出</button>
-                    <button type="button" class="rdts_submit btn btn-primary pull-right">检索</button>
+                    <button type="button" class="tslyl_submit btn btn-primary pull-right">检索</button>
                 </div>
                 <!--查询条件组-->
             </div>
@@ -86,14 +80,14 @@
     <div class="col-md-8 col-sm-8 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>图书流通热点分析</h2>
+                <h2>图书利用率展示</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" style="min-width:auto;" role="menu">
+                        <ul class="dropdown-menu" style=" min-width:auto;" role="menu">
                             <li>
                                 <a href="JavaScript:void(0);">刷新</a>
                             </li>
@@ -105,7 +99,7 @@
                 </ul>
                 <div class="clearfix"></div>
             </div>
-            <div class="x_content" id="rdts_container" style="height:342px">
+            <div class="x_content" id="tslyl_container" style="height:342px">
                 这里是图表
             </div>
         </div>
@@ -132,30 +126,29 @@
                 </ul>
                 <div class="clearfix"></div>
             </div>
-            <div class="x_content" style=" overflow:hidden">
-                <div id="rdts_detail"></div>
+            <div class="x_content" style="overflow:hidden">
+                <div id="tslyl_detail"></div>
             </div>
         </div>
     </div>
 </div>
-
 <!--时间处理函数-->
 <script src="~/Content/TimeObjectUtil/TimeObjectUtil.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        //热点图书图形化展示
-        var rdts_params = { "data": "rdts", "type": "column", "top": "10", "time": "一周" };
-        function rdts_ajax() {
+        //图书利用率图形化展示
+        var tslyl_params = { "data": "tslyl", "type": "column", "time": "一周" };
+        function tslyl_ajax() {
             $.ajax({
                 type: "GET",
                 url: "/Service/Library.ashx",
-                data: rdts_params,
+                data: tslyl_params,
                 dataType: "text",
                 success: function (data) {
                     //将json字符串转换为json对象
                     var items = eval("(" + data + ")");
 
-                    $('#rdts_container').highcharts({
+                    $('#tslyl_container').highcharts({
                         chart: {
                             type: 'column'
                         },
@@ -169,20 +162,34 @@
                             categories: items["xAxis"],
                             title: {
                                 text: null
+                            },
+                            labels: {
+                                formatter: function () {
+                                    if (this.value.length > 5)
+                                        return this.value.substr(0, 5) + "...";
+                                    else
+                                        return this.value;
+                                }
                             }
                         },
                         yAxis: {
                             title: {
-                                text: null
+                                text: '利用率',
+                                style: {
+                                    color: '#4572A7'
+                                }
                             },
-                            plotLines: [{
-                                value: 0,
-                                width: 1,
-                                color: '#808080'
-                            }]
+                            labels: {
+                                formatter: function () {
+                                    return this.value + '%';
+                                },
+                                style: {
+                                    color: '#4572A7'
+                                }
+                            }
                         },
                         tooltip: {
-                            valueSuffix: ' 次'
+                            valueSuffix: ' %'
                         },
                         plotOptions: {
                             column: {
@@ -210,26 +217,18 @@
                 }
             })
         };
-        //热点图书表格(详细)展示
-        global_params = { "data": "rdts", "type": "table", "top": "30", "time": "一周" };
+        //图书利用率表格(详细)展示
+        global_params = { "type": "table", "data": "tslyl", "time": "一周" };
         var cols = [
                         {
-                            title: '图书流通热点分析', align: 'center', cols: [
-                            { title: '分类号', name: 'CODE', width: 50, sortable: true, align: 'center' },
-                            //{ title: '索书号', name: 'BOOKRECNO', width: 50, sortable: true, align: 'center' },
-                            { title: '书名', name: 'TITLE', width: 150, sortable: true, align: 'center' },
-                            { title: '作者', name: 'AUTHOR', width: 100, sortable: true, align: 'center' },
-                            { title: '出版社', name: 'PUBLISHER', width: 100, sortable: true, align: 'center' },
-                            { title: '出版日期', name: 'PUBDATE', width: 80, sortable: true, align: 'center' },
-                            { title: 'ISBN', name: 'ISBN', width: 150, sortable: true, align: 'center' },
-                            { title: '借阅量', name: 'COUNT', width: 80, sortable: true, align: 'center', type: 'number' }
+                            title: '图书利用率详细数据', align: 'center', cols: [
+                            { title: '分类', name: 'NAME', width: 300, sortable: true, align: 'center' },
+                            { title: '利用率', name: 'LYL', width: 100, sortable: true, align: 'center', type: 'number' },
+                            { title: '借阅量', name: 'BORROW', width: 100, sortable: true, align: 'center', type: 'number' },
+                            { title: '馆藏数目', name: 'TOTAL', width: 100, sortable: true, align: 'center', type: 'number' }
                             ]
-                        }, {
-                            title: '操作', name: '', width: 130, align: 'center', lockWidth: true, lockDisplay: true, renderer: function (val) {
-                                return '<button  class="btn btn-bill btn-info visible-md visible-lg"  data-toggle="modal" data-target="#tanchuang">详细借阅</button>'
-                            }
                         }];
-        var mmg = $('#rdts_detail').mmGrid({
+        var mmg = $('#tslyl_detail').mmGrid({
             height: 500
             , width: document.getElementById("table_width").clientWidth - 10
 		    , cols: cols
@@ -242,95 +241,41 @@
         mmg.on('cellSelected', function (e, item, rowIndex, colIndex) {
             if ($(e.target).is('.btn-bill')) {
                 e.stopPropagation();  //阻止事件冒泡
-                rdtsclicked(item.TITLE);
+                tslylclicked(item.NAME);
             }
         });
         ///////////////////////////////////////////////////////////////////////
-        //rdts_change点击后触发检索数据行为
-        $(".rdts_change").click(function () {
-            $('.rdts_change').removeClass("btn-info");
+        //tslyl_change点击后触发检索数据行为
+        $(".tslyl_change").click(function () {
+            $('.tslyl_change').removeClass("btn-info");
             $(this).addClass("btn-info");
-            delete rdts_params.begtime;
-            delete rdts_params.endtime;
-            rdts_params = $.extend(rdts_params, { "time": this.innerText });
-            get_items();
-            rdts_ajax();
+            delete tslyl_params.begtime;
+            delete tslyl_params.endtime;
+            tslyl_params = $.extend(tslyl_params, { "time": this.innerText });
+            tslyl_ajax();
             delete global_params.begtime;
             delete global_params.endtime;
             global_params = $.extend(global_params, { "time": this.innerText });
             //检索条件赋值
-            get_items()
             mmg.load();
         });
         //检索按钮点击后触发检索数据行为
-        $(".rdts_submit").click(function () {
-            if (document.getElementById('rdts_begtime').value > document.getElementById('rdts_endtime').value) {
+        $(".tslyl_submit").click(function () {
+            if (document.getElementById('tslyl_begtime').value > document.getElementById('tslyl_endtime').value) {
                 alert("开始时间大于结束时间或时间为空");
-            }
-            else if ((document.getElementById('rdts_begtime').value != "") || (document.getElementById('rdts_endtime').value != "")) {
-                $('.rdts_change').removeClass("btn-info");
-                delete rdts_params.time;
-                rdts_params = $.extend(rdts_params, { "begtime": document.getElementById('rdts_begtime').value, "endtime": document.getElementById('rdts_endtime').value });
+            } else if ((document.getElementById('tslyl_begtime').value != "") || (document.getElementById('tslyl_endtime').value != "")) {
+                $('.tslyl_change').removeClass("btn-info");
+                delete tslyl_params.time;
+                tslyl_params = $.extend(tslyl_params, { "begtime": document.getElementById('tslyl_begtime').value, "endtime": document.getElementById('tslyl_endtime').value });
                 delete global_params.time;
-                global_params = $.extend(global_params, { "begtime": document.getElementById('rdts_begtime').value, "endtime": document.getElementById('rdts_endtime').value });
+                global_params = $.extend(global_params, { "begtime": document.getElementById('tslyl_begtime').value, "endtime": document.getElementById('tslyl_endtime').value });
             }
             //检索条件赋值
-            get_items()
             mmg.load();
-            rdts_ajax();
-        });
-        //采集输入信息
-        function get_items() {
-            if (document.getElementById('top').value != "") {
-                rdts_params = $.extend(rdts_params, { "top": document.getElementById('top').value });
-                global_params = $.extend(global_params, { "top": document.getElementById('top').value });
-            }
-            if (document.getElementById('yxmc').value != "") {
-                global_params = $.extend(global_params, { "yxmc": document.getElementById('yxmc').value });
-                rdts_params = $.extend(rdts_params, { "yxmc": document.getElementById('yxmc').value });
-            }
-            else {
-                delete global_params.yxmc;
-                delete rdts_params.yxmc;
-            }
-            if (document.getElementById('typecode').value != "") {
-                global_params = $.extend(global_params, { "typecode": document.getElementById('typecode').value });
-                rdts_params = $.extend(rdts_params, { "typecode": document.getElementById('typecode').value });
-            }
-            else {
-                delete global_params.typecode;
-                delete rdts_params.typecode;
-            }
-        }
-        //详细借阅点击事件
-        function rdtsclicked(name) {
-            var href = "/library/BorrowDetail";
-            var dat = new Date();
-            var count = 8;
-            if (rdts_params.time != null) {
-                if (rdts_params.time == "两周")
-                    count = 15;
-                if (rdts_params.time == "一月")
-                    count = 31;
-                if (rdts_params.time == "一年")
-                    count = 367;
-                href += "?iv_book_name=" + escape(name) + "&begtime=" + TimeObjectUtil.formatterDate(TimeObjectUtil.addDate(dat, -count)) + "&endtime=" + TimeObjectUtil.formatterDate(TimeObjectUtil.addDate(dat, -1));
-            } else if ((rdts_params.begtime != null) && (rdts_params.endtime != null)) {
-                href += "?iv_book_name=" + escape(name) + "&begtime=" + rdts_params.begtime + "&endtime=" + rdts_params.endtime;
-            } else {
-                href += "?iv_book_name=" + escape(name);
-            }
-            var title = "图书借阅详情";
-            document.getElementById("tanchuang_title").innerText = title;
-            document.getElementById("tanchuang_content").src = href;
-        }
-        //时间检索事件
-        $(function () {
-            $('#rdts_endtime').calendar({ maxDate: '%y-%M-%d', format: 'yyyy-MM-dd' });
-            $('#rdts_begtime').calendar({ maxDate: '%y-%M-%d', format: 'yyyy-MM-dd' });
+            tslyl_ajax();
         });
         //导出数据到excel
-        var export_params = { "type": "export_excel", "data": "rdts", "time": "一周" };
+        var export_params = { "type": "export_excel", "data": "tslyl", "time": "一周" };
         $("#but_export").click(function () {
             export_params = $.extend(global_params, { "type": "export_excel" });
             var dynamicForm = document.createElement("form");
@@ -357,7 +302,7 @@
         function GZL24H_changeDivHeight() {
             //因手机端选择输入框时会触发resize事件，因此执行前先判断浏览器宽度有无变化
             if (document.getElementById("table_width").clientWidth != body_width) {
-                rdts_ajax();
+                tslyl_ajax();
                 $.extend(mmg.opts, { width: (document.getElementById("table_width").clientWidth - 10), height: 500 });
                 mmg.resize();
                 if (document.getElementById("table_width").clientWidth < 768) {

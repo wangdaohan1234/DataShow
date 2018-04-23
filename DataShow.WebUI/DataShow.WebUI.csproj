@@ -198,6 +198,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibraryController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -208,6 +209,12 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Card.ashx.cs">
+      <DependentUpon>Card.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Common.ashx.cs">
+      <DependentUpon>Common.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\DataShow.ashx.cs">
       <DependentUpon>DataShow.ashx</DependentUpon>
     </Compile>
@@ -530,11 +537,16 @@
     <Content Include="Service\DataShow.ashx" />
     <Content Include="Service\EarlyWarning.ashx" />
     <Content Include="Views\Home\Show.cshtml" />
-    <Content Include="Views\Library\Book.cshtml" />
     <Content Include="Views\Library\RDTS.cshtml" />
     <Content Include="Views\Library\Library.cshtml" />
     <Content Include="Service\Library.ashx" />
     <Content Include="Views\Library\BorrowDetail.cshtml" />
+    <Content Include="Views\Library\TSLYL.cshtml" />
+    <Content Include="Views\Card\Card.cshtml" />
+    <Content Include="Service\Card.ashx" />
+    <Content Include="Views\Card\StuMap.cshtml" />
+    <Content Include="Service\Common.ashx" />
+    <Content Include="Views\Home\EWDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

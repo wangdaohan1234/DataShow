@@ -188,7 +188,7 @@ namespace DataShow.WebUI.Service
                 context.Response.Write(str);
             }
             #endregion
-            #region 预警
+            #region 校情展示
             if (context.Request["data"] == "SHOW")
             {
                 List<string> sts = new List<string>();
@@ -248,6 +248,61 @@ namespace DataShow.WebUI.Service
                 //Ajax返回前台
                 context.Response.ContentType = "text/plain";
                 context.Response.Write(Json);
+            }
+            #endregion
+            #region 生源地分析(地图)
+            if (context.Request["data"] == "stumap")
+            {
+                //返回字符串定义
+                string str = "";
+                //SQL语句
+                String sql = "";
+                List<string> SQLS = new List<string>();
+
+                //全省身份证号码对应关系
+                string[,] code = { { "北京", "11" }, { "天津", "12" }, { "河北", "13" }, { "山西", "14" }, { "内蒙古", "15" }, { "辽宁", "21" }, { "吉林", "22" }, { "黑龙江", "23" }, { "上海", "31" }, { "江苏", "32" }, { "浙江", "33" }, { "安徽", "34" }, { "福建", "35" }, { "江西", "36" }, { "山东", "37" }, { "河南", "41" }, { "湖北", "42" }, { "湖南", "43" }, { "广东", "44" }, { "广西", "45" }, { "海南", "46" }, { "重庆", "50" }, { "四川", "51" }, { "贵州", "52" }, { "云南", "53" }, { "西藏", "54" }, { "陕西", "61" }, { "甘肃", "62" }, { "青海", "63" }, { "宁夏", "64" }, { "新疆", "65" }, { "台湾", "71" }, { "香港", "81" }, { "澳门", "82" }, { "国外", "91" } };
+
+                if (context.Request["grade"].ToString() == "" || context.Request["grade"].ToString() == null)
+                {
+                    sql = "SELECT COUNT(*) FROM dbo.ORG_NE_T_CUSTOMER";
+                    //总人数
+                    SQLS.Add(sql);
+                    //每个省人数
+                    for (int i = 0; i < 35; i++)
+                    {
+                        SQLS.Add(string.Format("{0} WHERE IDNO LIKE '{1}%'", sql, code[i, 1]));
+                    }
+                }
+                else
+                {
+                    string st = context.Request["grade"].ToString();
+                    sql = string.Format("SELECT COUNT(*) FROM dbo.ORG_NE_T_CUSTOMER WHERE STUEMPNO LIKE '{0}%'", st);
+                    //总人数
+                    SQLS.Add(sql);
+                    //每个省人数
+                    for (int i = 0; i < 35; i++)
+                    {
+                        SQLS.Add(string.Format("{0} AND IDNO LIKE '{1}%'", sql, code[i, 1]));
+                    }
+                }
+
+                DataSet ds = DBUtility.SqlToTable(SQLS);
+
+                str = "{";
+                //全部人数
+                str += string.Format("\"toalcount\":{0},", ds.Tables[0].Rows[0][0].ToString());
+                str += "\"items\":[";
+                //返回值处理
+                for (int i = 1; i < ds.Tables.Count; i++)
+                {
+                    str += "{ 'hc-key': '" + code[i - 1, 0] + "', value: " + ds.Tables[i].Rows[0][0].ToString() + " },";
+                }
+                //Remove the last ','
+                str = str.Remove(str.LastIndexOf(','));
+                str += "]}";
+
+                context.Response.ContentType = "text/plain";
+                context.Response.Write(str);
             }
             #endregion
         }

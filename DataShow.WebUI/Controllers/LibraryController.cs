@@ -14,7 +14,7 @@ namespace DataShow.WebUI.Controllers
             return View();
         }
 
-        public ActionResult Book()
+        public ActionResult TSLYL()
         {
             return View();
         }
@@ -25,11 +25,6 @@ namespace DataShow.WebUI.Controllers
         }
 
         public ActionResult BorrowDetail()
-        {
-            return View();
-        }
-
-        public ActionResult Test()
         {
             return View();
         }

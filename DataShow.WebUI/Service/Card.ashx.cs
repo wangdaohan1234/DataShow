@@ -9,9 +9,9 @@ using DataShow.Domain;
 namespace DataShow.WebUI.Service
 {
     /// <summary>
-    /// Library 的摘要说明
+    /// Card 的摘要说明
     /// </summary>
-    public class Library : IHttpHandler
+    public class Card : IHttpHandler
     {
 
         public void ProcessRequest(HttpContext context)
@@ -63,96 +63,31 @@ namespace DataShow.WebUI.Service
                 page = int.Parse(context.Request.QueryString["page"].ToString());
                 limit = int.Parse(context.Request.QueryString["limit"].ToString());
             }
-
-            #region 馆藏图书按中图法分类
-            if (context.Request["data"] == "ztf")
-            {
-                //存储过程名称
-                ProName = "Library_ZTF";
-                //具体申请几个空间看存储过程中需要几个参数
-                parm = new SqlParameter[0];
-            }
-            #endregion
-            #region 馆藏图书按类型分类
-            if (context.Request["data"] == "lx")
-            {
-                //存储过程名称
-                ProName = "Library_LX";
-                //具体申请几个空间看存储过程中需要几个参数
-                parm = new SqlParameter[0];
-            }
-            #endregion
-            #region 图书借阅分学院统计
-            if (context.Request["data"] == "tsjybyxy")
-            {
-                //存储过程名称
-                ProName = "Library_JYByXY";
-                //具体申请几个空间看存储过程中需要几个参数
-                parm = new SqlParameter[2];
-                parm[0] = new SqlParameter("@begintime", "20170101");
-                parm[1] = new SqlParameter("@endtime", "20180417");
-            }
-            #endregion
-            #region 图书利用率统计
-            if (context.Request["data"] == "tslyl")
+            #region 用户信息详情
+            if (context.Request["data"] == "CustomerDetail")
             {
                 //存储过程名称(需要注意在哪个用户下)
-                if (context.Request["type"] == "column")
-                    ProName = "Library_TSLYL_Chart";
-                if ((context.Request["type"] == "table") || (context.Request["type"] == "export_excel"))
-                    ProName = "Library_TSLYL_Tab";
+                ProName = "Card_CustomerDetail";
                 //具体申请几个空间看存储过程中需要几个参数
-                parm = new SqlParameter[2];
-                parm[0] = new SqlParameter("@begintime", begtime.ToString("yyyyMMdd"));
-                parm[1] = new SqlParameter("@endtime", endtime.ToString("yyyyMMdd"));
-            }
-            #endregion
-            #region 热点图书
-            if (context.Request["data"] == "rdts")
-            {
-                //存储过程名称(需要注意在哪个用户下)
-                if (context.Request["type"] == "column")
-                    ProName = "Library_RDTS_Chart";
-                if ((context.Request["type"] == "table") || (context.Request["type"] == "export_excel"))
-                    ProName = "Library_RDTS_Tab";
-                //具体申请几个空间看存储过程中需要几个参数
-                parm = new SqlParameter[3];
-                int top = 10;
-                parm[0] = new SqlParameter("@top", top);
-                if ((context.Request["top"] != null) && (int.TryParse(context.Request["top"], out top)))
-                    parm[0].Value = top;
-                else
-                    parm[0].Value = 10;
-                parm[1] = new SqlParameter("@begintime", begtime.ToString("yyyyMMdd"));
-                parm[2] = new SqlParameter("@endtime", endtime.ToString("yyyyMMdd"));
-            }
-            #endregion
-            #region 图书借阅详情
-            if (context.Request["data"] == "BorrowDetail")
-            {
-                //存储过程名称(需要注意在哪个用户下)
-                ProName = "Library_BorrowDetail";
-                //具体申请几个空间看存储过程中需要几个参数
-                parm = new SqlParameter[11];
-                parm[0] = new SqlParameter("@begintime", begtime.ToString("yyyyMMdd"));
-                parm[1] = new SqlParameter("@endtime", endtime.ToString("yyyyMMdd"));
-                parm[2] = new SqlParameter("@xh", context.Request["iv_id"]);
-                parm[3] = new SqlParameter("@xm", context.Request["iv_name"]);
-                parm[4] = new SqlParameter("@xy", context.Request["iv_department"]);
-                parm[5] = new SqlParameter("@title", context.Request["iv_book_name"]);
-                parm[6] = new SqlParameter("@author", context.Request[("iv_author")]);
-                parm[7] = new SqlParameter("@isbn", context.Request["iv_ISBN"]);
-                parm[8] = new SqlParameter("@page_size", limit);
-                parm[9] = new SqlParameter("@Page_num", page);
-                parm[10] = new SqlParameter("@total_record", SqlDbType.Int);
-                parm[10].Direction = ParameterDirection.Output;
+                parm = new SqlParameter[10];
+                parm[0] = new SqlParameter("@stuempno", context.Request["stuempno"]);
+                parm[1] = new SqlParameter("@custname", context.Request["custname"]);
+                parm[2] = new SqlParameter("@sex", context.Request["sex"]);
+                parm[3] = new SqlParameter("@custtypename", context.Request["custtypename"]);
+                parm[4] = new SqlParameter("@idno", context.Request["idno"]);
+                parm[5] = new SqlParameter("@deptname", context.Request["deptname"]);
+                parm[6] = new SqlParameter("@classname", context.Request[("classname")]);
+                parm[7] = new SqlParameter("@page_size", limit);
+                parm[8] = new SqlParameter("@Page_num", page);
+                parm[9] = new SqlParameter("@total_record", SqlDbType.Int);
+                parm[9].Direction = ParameterDirection.Output;
             }
             #endregion
 
             //运行SQL
             DataSet dt = DBUtility.ProceureToTable(ProName, parm);
-            if (context.Request["data"] == "BorrowDetail")
-                totalCount = Convert.ToInt32(parm[10].Value);
+            if (context.Request["data"] == "CustomerDetail")
+                totalCount = Convert.ToInt32(parm[9].Value);
 
             #region 输出图形分成几份
             int count = 0;
