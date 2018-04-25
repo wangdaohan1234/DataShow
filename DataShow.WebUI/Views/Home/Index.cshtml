@@ -355,6 +355,18 @@
                             column: {
                                 dataLabels: {
                                     enabled: false
+                                },
+                                point: {
+                                    events: {
+                                        click: function (event) {
+                                            var name = this.category;
+                                            var href = "/Home/EWDetail" + "?fdy=" + escape(name) + "&time=" + escape("20180424") + "&warning=" + escape("3");
+                                            var title = this.category + "所带学生详细预警信息";
+                                            document.getElementById("tanchuang_title").innerText = title;
+                                            document.getElementById("tanchuang_content").src = href;
+                                            $('#tangchuangM').click();
+                                        }
+                                    },
                                 }
                             }
                         },

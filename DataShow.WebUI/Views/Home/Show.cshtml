@@ -63,7 +63,7 @@
                     </div>
                     <div class="xe-label">
                         <strong class="num" id="books">0</strong>
-                        <span>馆藏图书(册)</span>
+                        <span>馆藏图书(万册)</span>
                     </div>
                 </div>
                 <div class="xe-widget xe-counter xe-counter-info">
@@ -109,7 +109,7 @@
                     </div>
                     <div class="xe-label">
                         <strong class="num" id="zonghe">0</strong>
-                        <span>总消费（元）</span>
+                        <span>总消费（万元）</span>
                     </div>
                 </div>
                 <div class="xe-widget xe-counter xe-counter-info">
@@ -225,17 +225,17 @@
                 $("#jiaoshi").animateNumber({ number: data["card"]["教职工"] + data["card"]["教授"] }, 4000);
                 $("#stu").animateNumber({ number: data["card"]["本科生"] + data["card"]["专科生"] }, 4000);
                 $("#linshi").animateNumber({ number: data["card"]["校外临时人员"] + data["card"]["校内临时人员"] }, 4000);
-                $("#books").animateNumber({ number: parseInt(data["books"]) }, 3000);
+                $("#books").animateNumber({ number: parseInt(data["books"] / 10000) }, 3000);
                 $("#liutong").animateNumber({ number: data["consume"][0] }, 4000);
-                $("#zonghe").animateNumber({ number: parseInt(data["consume"][1]) }, 3000);
+                $("#zonghe").animateNumber({ number: parseInt(data["consume"][1] / 10000) }, 3000);
                 $("#cishu").animateNumber({ number: data["consume"][2] }, 4000);
 
                 document.getElementById("jiaoshi-1").innerHTML = data["card"]["教职工"] + data["card"]["教授"];
                 document.getElementById("stu-1").innerHTML = data["card"]["本科生"] + data["card"]["专科生"];
                 document.getElementById("linshi-1").innerHTML = data["card"]["校外临时人员"] + data["card"]["校内临时人员"];
-                document.getElementById("books-1").innerHTML = parseInt(data["books"]);
+                document.getElementById("books-1").innerHTML = parseInt(data["books"] / 10000);
                 document.getElementById("liutong-1").innerHTML = data["consume"][0];
-                document.getElementById("zonghe-1").innerHTML = parseInt(data["consume"][1]);
+                document.getElementById("zonghe-1").innerHTML = parseInt(data["consume"][1] / 10000);
                 document.getElementById("cishu-1").innerHTML = data["consume"][2];
                 document.getElementById("renjun-1").innerHTML = data["consume"][3];
 

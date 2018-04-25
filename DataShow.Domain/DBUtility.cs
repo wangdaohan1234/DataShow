@@ -18,6 +18,7 @@ namespace DataShow.Domain
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter();
             SqlCommand cmd = new SqlCommand();
+            cmd.CommandTimeout = 180;
             SqlConnection con = new SqlConnection(connectstring);
             try
             {
@@ -56,6 +57,7 @@ namespace DataShow.Domain
             SqlConnection con = new SqlConnection(connectstring);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = ProName;
+            cmd.CommandTimeout = 180;
             try
             {
                 con.Open();

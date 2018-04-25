@@ -21,8 +21,8 @@ namespace DataShow.WebUI.Service
             {
                 List<string> sts = new List<string>();
                 //消费预警
-                string sql1 = string.Format("SELECT YXMC, COUNT(*) FROM dbo.ORG_MM_EARLYWARNING WHERE TIME = {0} AND COUNT >= {1} "
-                            + " GROUP BY YXMC ORDER BY COUNT(*) DESC", DateTime.Now.AddDays(-2).ToString("yyyyMMdd"), 3);
+                string sql1 = string.Format("SELECT YXMC, COUNT(*) FROM dbo.ORG_MM_EARLYWARNING WHERE TIME = {0} AND WARNING >= {1} "
+                            + " GROUP BY YXMC ORDER BY COUNT(*) DESC", DateTime.Now.AddDays(-1).ToString("yyyyMMdd"), 3);
                 //图书预警
                 string sql2 = string.Format("SELECT NAME,COUNT(*) FROM "
                             + " (SELECT XH,YXSH FROM dbo.ORG_JW_XS_XSJBSJ WHERE XSDQZTM =2) a "
@@ -48,7 +48,7 @@ namespace DataShow.WebUI.Service
                 //医务预警
                 string sql4 = string.Format("SELECT NAME,COUNT(*) FROM "
                             + " (SELECT BLH FROM dbo.ORG_YWS_XT_BRJBXX "
-                            + " WHERE BRXZ = 13 AND CONVERT(datetime,left(JDRQ,(charindex(' ',JDRQ)-1))) >= {0}) a "
+                            + " WHERE BRXZ = 13 AND JDRQ >= {0}) a "
                             + " LEFT JOIN "
                             + " (SELECT XH,YXSH FROM dbo.ORG_JW_XS_XSJBSJ) b "
                             + " ON a.BLH = b.XH "

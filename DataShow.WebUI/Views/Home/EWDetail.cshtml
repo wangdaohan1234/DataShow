@@ -35,30 +35,38 @@
         <div class="m">
             <div class="jiansuo">
                 <span>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>：
-                <input id="iv_id" class="input_out" size="13" style="width:100px" name="" type="text" />
+                <input id="xh" class="input_out" size="13" style="width:100px" name="" type="text" />
             </div>
             <div class="jiansuo">
                 <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>：
-                <input id="iv_name" class="input_out" size="13" style="width:100px" name="" type="text" />
+                <input id="xm" class="input_out" size="13" style="width:100px" name="" type="text" />
             </div>
             <div class="jiansuo">
                 <span>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;院</span>：
-                <input id="iv_department" class="input_out" size="13" style="width:100px" name="" type="text" />
+                <input id="yxmc" class="input_out" size="13" style="width:100px" name="" type="text" />
             </div>
             <div class="jiansuo">
-                <span>ISBN号</span>：
-                <input id="iv_ISBN" class="input_out" size="13" style="width:100px" name="" type="text" />
+                <span>专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业</span>：
+                <input id="zymc" class="input_out" size="13" style="width:100px" name="" type="text" />
             </div>
             <div class="jiansuo">
-                <span>书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>：
-                <input id="iv_book_name" class="input_out" size="13" style="width:100px" name="" type="text" />
+                <span>班&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级</span>：
+                <input id="bjmc" class="input_out" size="13" style="width:100px" name="" type="text" />
             </div>
             <div class="jiansuo">
-                <span>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者</span>：
-                <input id="iv_author" class="input_out" size="13" style="width:100px" name="" type="text" />
+                <span>时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间</span>：
+                <input id="time" class="input_out" size="13" style="width:100px" name="" type="text" />
+            </div>
+            <div class="jiansuo">
+                <span>天&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数</span>：
+                <input id="warning" class="input_out" size="13" style="width:100px" name="" type="text" />
+            </div>
+            <div class="jiansuo">
+                <span>辅导员</span>：
+                <input id="fdy" class="input_out" size="13" style="width:100px" name="" type="text" />
             </div>
 
-            <div class="jiansuo" style="width:350px">
+            @*<div class="jiansuo" style="width:350px">
                 <span>借阅时间</span>：
                 <input id="begtime" class="input_out runcode" size="10" style="width:100px" name="" type="text" /> ~
                 <input id="endtime" class="input_out runcode" size="10" style="width:100px" name="" type="text" />
@@ -68,7 +76,7 @@
                         $('#endtime').calendar({ maxDate: '%y-%M-%d', format: 'yyyy-MM-dd' });
                     });
                 </script>
-            </div>
+            </div>*@
             <div class="jiansuo" style="text-align:right; width:60px; float:right; ">
                 <input id="btn" class="btn btn-success" size="10" style="float:right" name="" value="检索" type="button" />
             </div>
@@ -101,27 +109,28 @@
         })();
         //详细数据
         var cols = [
-                        { title: '借阅信息', align: 'center', cols: [
-                        { title: '读者条码', name: 'DATA2', width: 90, sortable: true, align: 'center' },
-                        { title: '读者姓名', name: 'XM', width: 60, sortable: true, align: 'center' },
-                        { title: '单位名称', name: 'NAME', width: 70, sortable: true, align: 'center' },
-                        { title: '图书名', name: 'TITLE', width: 120, sortable: true, align: 'center' },
-                        { title: '作者', name: 'AUTHOR', width: 70, sortable: true, align: 'center' },
-                        { title: 'ISBN号', name: 'ISBN', width: 80, sortable: true, align: 'center' },
-                        { title: '借书日期', name: 'LOAN_TIME', width: 70, sortable: true, align: 'center' }
+                        { title: '预警学生详细信息', align: 'center', cols: [
+                        { title: '学号', name: 'XH', width: 90, sortable: true, align: 'center' },
+                        { title: '姓名', name: 'XM', width: 60, sortable: true, align: 'center' },
+                        { title: '学院', name: 'YXMC', width: 70, sortable: true, align: 'center' },
+                        { title: '专业', name: 'ZYMC', width: 120, sortable: true, align: 'center' },
+                        { title: '班级', name: 'BJMC', width: 70, sortable: true, align: 'center' },
+                        { title: '时间', name: 'TIME', width: 80, sortable: true, align: 'center' },
+                        { title: '天数', name: 'WARNING', width: 80, sortable: true, align: 'center' },
+                        { title: '辅导员', name: 'FDY', width: 70, sortable: true, align: 'center' }
                       ]
                         }
                         ];
         //检索字段向后台传参:组成方式为"{字段名:值}"
         $.fn.TransferParams = function () {
             var st = {};
-            var param = ["iv_id", "iv_name", "begtime", "endtime", "iv_department", "iv_book_name", "iv_ISBN", "iv_author"];
+            var param = ["xh", "xm", "yxmc", "zymc", "bjmc", "time", "warning", "fdy"];
             for (var i = 0; i < param.length; i++) {
                 if ((document.getElementById(param[i]) != null) && (document.getElementById(param[i]).value != "")) {
                     st[param[i]] = document.getElementById(param[i]).value;
                 }
             }
-            $.extend(st, { "data": "BorrowDetail", "type": "tablepaged" });
+            $.extend(st, { "data": "EWDetail", "type": "tablepaged" });
             global_params = st;
         };
         $('#btn').click(function () {
@@ -138,7 +147,7 @@
             , sortName: 'LOAN_TIME'
             , sortStatus: 'desc'
             , remoteSort: true
-		    , url: '/Service/Library.ashx'
+		    , url: '/Service/EarlyWarning.ashx'
             , method: 'get'
             , autoLoad: true
             , fullWidthRows: true //伸展列宽自动充满表格
@@ -149,36 +158,36 @@
         });
 
         //判断是否有传参
-        if ($_GET["iv_id"] != null) {
-            document.getElementById("iv_id").value = unescape($_GET["iv_id"]);
+        if ($_GET["xh"] != null) {
+            document.getElementById("xh").value = unescape($_GET["xh"]);
             $.fn.TransferParams();
         }
-        if ($_GET["iv_name"] != null) {
-            document.getElementById("iv_name").value = unescape($_GET["iv_name"]);
+        if ($_GET["xm"] != null) {
+            document.getElementById("xm").value = unescape($_GET["xm"]);
             $.fn.TransferParams();
         }
-        if ($_GET["iv_department"] != null) {
-            document.getElementById("iv_department").value = unescape($_GET["iv_department"]);
+        if ($_GET["yxmc"] != null) {
+            document.getElementById("yxmc").value = unescape($_GET["yxmc"]);
             $.fn.TransferParams();
         }
-        if ($_GET["iv_book_name"] != null) {
-            document.getElementById("iv_book_name").value = unescape($_GET["iv_book_name"]);
+        if ($_GET["zymc"] != null) {
+            document.getElementById("zymc").value = unescape($_GET["zymc"]);
             $.fn.TransferParams();
         }
-        if ($_GET["iv_ISBN"] != null) {
-            document.getElementById("iv_ISBN").value = unescape($_GET["iv_ISBN"]);
+        if ($_GET["bjmc"] != null) {
+            document.getElementById("bjmc").value = unescape($_GET["bjmc"]);
             $.fn.TransferParams();
         }
-        if ($_GET["iv_author"] != null) {
-           document.getElementById("iv_author").value = unescape($_GET["iv_author"]);
+        if ($_GET["time"] != null) {
+            document.getElementById("time").value = unescape($_GET["time"]);
             $.fn.TransferParams();
         }
-        if ($_GET["begtime"] != null) {
-            document.getElementById("begtime").value = $_GET["begtime"];
+        if ($_GET["warning"] != null) {
+            document.getElementById("warning").value = $_GET["warning"];
             $.fn.TransferParams();
         }
-        if ($_GET["endtime"] != null) {
-            document.getElementById("endtime").value = $_GET["endtime"];
+        if ($_GET["fdy"] != null) {
+            document.getElementById("fdy").value = unescape($_GET["fdy"]);
             $.fn.TransferParams();
         }
 
