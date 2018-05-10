@@ -5,17 +5,30 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using DataShow.Domain;
+using System.Web.SessionState;
 
 namespace DataShow.WebUI.Service
 {
     /// <summary>
     /// Library 的摘要说明
     /// </summary>
-    public class Library : IHttpHandler
+    public class Library : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
         {
+            //查看session
+            if (HttpContext.Current.Session["user"] == null)
+            {
+                context.Response.ContentType = "text/plain";
+                context.Response.Write("nosession");
+                return;
+            }
+            if ((context.Request["type"] == null) || (context.Request["data"] == null))
+            {
+                context.Response.ContentType = "text/plain";
+                context.Response.Write("type或data参数为空");
+            }
             //标题
             string title = "";
             //传递参数

@@ -5,17 +5,30 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using DataShow.Domain;
+using System.Web.SessionState;
 
 namespace DataShow.WebUI.Service
 {
     /// <summary>
     /// 预警系统的数据请求处理
     /// </summary>
-    public class EarlyWarning : IHttpHandler
+    public class EarlyWarning : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
         {
+            //查看session
+            if (HttpContext.Current.Session["user"] == null)
+            {
+                context.Response.ContentType = "text/plain";
+                context.Response.Write("nosession");
+                return;
+            }
+            if ((context.Request["type"] == null) || (context.Request["data"] == null))
+            {
+                context.Response.ContentType = "text/plain";
+                context.Response.Write("type或data参数为空");
+            }
             //标题
             string title = "";
             //传递参数
@@ -39,7 +52,7 @@ namespace DataShow.WebUI.Service
                 ProName = "EW_XSYJByXYAndNJ";
                 //具体申请几个空间看存储过程中需要几个参数
                 parm = new SqlParameter[3];
-                parm[0] = new SqlParameter("@time", DateTime.Now.AddDays(-1).ToString("yyyyMMdd"));
+                parm[0] = new SqlParameter("@time", "20180425");
                 parm[1] = new SqlParameter("@waring", 3);
                 parm[2] = new SqlParameter("@lastestgrade", 2017);
             }
@@ -51,7 +64,7 @@ namespace DataShow.WebUI.Service
                 ProName = "EW_XSYJByFDY";
                 //具体申请几个空间看存储过程中需要几个参数
                 parm = new SqlParameter[2];
-                parm[0] = new SqlParameter("@time", DateTime.Now.AddDays(-1).ToString("yyyyMMdd"));
+                parm[0] = new SqlParameter("@time", "20180425");
                 parm[1] = new SqlParameter("@waring", 3);
             }
             #endregion
@@ -79,7 +92,7 @@ namespace DataShow.WebUI.Service
                 parm[3] = new SqlParameter("@zymc", context.Request["zymc"]);
                 parm[4] = new SqlParameter("@bjmc", context.Request["bjmc"]);
                 parm[5] = new SqlParameter("@time", context.Request["time"]);
-                parm[6] = new SqlParameter("@warning", context.Request[("warning")]);
+                parm[6] = new SqlParameter("@warning", context.Request["warning"]);
                 parm[7] = new SqlParameter("@fdy", context.Request[("fdy")]);
                 parm[8] = new SqlParameter("@page_size", limit);
                 parm[9] = new SqlParameter("@page_num", page);

@@ -5,24 +5,37 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using DataShow.Domain;
+using System.Web.SessionState;
 
 namespace DataShow.WebUI.Service
 {
     /// <summary>
     /// DataShow 的摘要说明
     /// </summary>
-    public class DataShow : IHttpHandler
+    public class DataShow : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
         {
+            //查看session
+            if (HttpContext.Current.Session["user"] == null)
+            {
+                context.Response.ContentType = "text/plain";
+                context.Response.Write("nosession");
+                return;
+            }
+            if (context.Request["data"] == null)
+            {
+                context.Response.ContentType = "text/plain";
+                context.Response.Write("type或data参数为空");
+            }
             #region 顶部预警展示
             if (context.Request["data"] == "ew")
             {
                 List<string> sts = new List<string>();
                 //消费预警
                 string sql1 = string.Format("SELECT YXMC, COUNT(*) FROM dbo.ORG_MM_EARLYWARNING WHERE TIME = {0} AND WARNING >= {1} "
-                            + " GROUP BY YXMC ORDER BY COUNT(*) DESC", DateTime.Now.AddDays(-1).ToString("yyyyMMdd"), 3);
+                            + " GROUP BY YXMC ORDER BY COUNT(*) DESC", "20180425", 3);
                 //图书预警
                 string sql2 = string.Format("SELECT NAME,COUNT(*) FROM "
                             + " (SELECT XH,YXSH FROM dbo.ORG_JW_XS_XSJBSJ WHERE XSDQZTM =2) a "

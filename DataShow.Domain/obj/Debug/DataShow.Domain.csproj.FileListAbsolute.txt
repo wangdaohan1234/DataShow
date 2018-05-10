@@ -1,5 +1,5 @@
 C:\Users\Administrator\Desktop\毕设\DataShow\DataShow.Domain\bin\Debug\DataShow.Domain.dll
 C:\Users\Administrator\Desktop\毕设\DataShow\DataShow.Domain\bin\Debug\DataShow.Domain.pdb
-C:\Users\Administrator\Desktop\毕设\DataShow\DataShow.Domain\obj\Debug\DataShow.Domain.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\毕设\DataShow\DataShow.Domain\obj\Debug\DataShow.Domain.dll
 C:\Users\Administrator\Desktop\毕设\DataShow\DataShow.Domain\obj\Debug\DataShow.Domain.pdb
+C:\Users\Administrator\Desktop\毕设\DataShow\DataShow.Domain\obj\Debug\DataShow.Domain.csprojResolveAssemblyReference.cache

@@ -231,6 +231,10 @@
                 data: ew_params,
                 dataType: "text",
                 success: function (data) {
+                    if (data == "nosession") {
+                        window.location.href = "/Login/Index";
+                        return;
+                    }
                     data = eval("(" + data + ")");
                     //数据分配
                     document.getElementById("ecard1").innerHTML = data["ecard"][1];
@@ -254,6 +258,10 @@
                 data: xsssyjtj_params,
                 dataType: "text",
                 success: function (data) {
+                    if (data == "nosession") {
+                        window.location.href = "/Login/Index";
+                        return;
+                    }
                     //将json字符串转换为json对象
                     var items = eval("(" + data + ")");
 
@@ -324,6 +332,10 @@
                 data: xsyj_params,
                 dataType: "text",
                 success: function (data) {
+                    if (data == "nosession") {
+                        window.location.href = "/Login/Index";
+                        return;
+                    }
                     //将json字符串转换为json对象
                     var items = eval("(" + data + ")");
 
@@ -360,7 +372,7 @@
                                     events: {
                                         click: function (event) {
                                             var name = this.category;
-                                            var href = "/Home/EWDetail" + "?fdy=" + escape(name) + "&time=" + escape("20180424") + "&warning=" + escape("3");
+                                            var href = "/Home/EWDetail" + "?fdy=" + escape(name) + "&time=" + escape("20180425") + "&warning=" + escape("3");
                                             var title = this.category + "所带学生详细预警信息";
                                             document.getElementById("tanchuang_title").innerText = title;
                                             document.getElementById("tanchuang_content").src = href;
@@ -397,6 +409,10 @@
                 data: wgxsfbqk_params,
                 dataType: "text",
                 success: function (data) {
+                    if (data == "nosession") {
+                        window.location.href = "/Login/Index";
+                        return;
+                    }
                     //将json字符串转换为json对象
                     var items = eval("(" + data + ")");
 
@@ -459,6 +475,10 @@
                 data: xsrjxfyj_params,
                 dataType: 'text',
                 success: function (data) {
+                    if (data == "nosession") {
+                        window.location.href = "/Login/Index";
+                        return;
+                    }
                     data = eval("(" + data + ")");
                     //document.getElementById("L_month").innerText = meal["month"].replace("个月", "");
 
