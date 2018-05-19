@@ -135,8 +135,8 @@
                         { title: '离校日期', name: 'OUTDATE', width: 60, sortable: false, align: 'center', hidden: true },
                         { title: '开卡日期', name: 'OPENDATE', width: 60, sortable: false, align: 'center', hidden: true },
                         { title: '注销日期', name: 'CLOSEDATE', width: 60, sortable: false, align: 'center', hidden: true }
-                        ]
-                        }];
+                        ]}
+        ];
         //检索字段像后台传参:组成方式为"{字段名:值}"
         $.fn.TransferParams = function () {
             var st = {};
@@ -174,11 +174,12 @@
 		    ] //分页插件
         });
         mmg.on('cellSelected', function (e, item, rowIndex, colIndex) {
+            //查看
             if ($(e.target).is('.btn-bill')) {
                 e.stopPropagation();  //阻止事件冒泡
-                //tslylclicked(item.NAME);
+                window.open("PersonalMonthBill?userid=" + item.STUEMPNO + "&name=" + escape(item.CUSTNAME), 'tipWindow');
             }
-        });
+        }).load();
         $('#btn').click();
         ///////////////////////////////////////////////////////////////////////
         //浏览器大小缩放时操作

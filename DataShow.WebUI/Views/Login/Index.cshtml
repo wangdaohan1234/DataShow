@@ -18,9 +18,12 @@
 <body>
     <div class="wrapper">
         <div class="container">
-            <div>
+            <div class="logo">
                 <h1>上海第二工业大学数据展示平台</h1>
             </div>
+            @*<div>
+                <h1>上海第二工业大学数据展示平台</h1>
+            </div>*@
             <form class="form">
                 <div class="row">
                     <input id="username" type="text" placeholder="用户名">
@@ -30,13 +33,13 @@
                     <input id="password" type="password" placeholder="登录密码">
                     <i class="fa fa-key"></i>
                 </div>
-                <div class="row">
+                @*<div class="row">
                     <input id="txt_code" maxlength="4" type="text" placeholder="验证码" style="width: 190px; float: left;">
                     <div style="width: 110px; float: right; padding-top: 14px; padding-left: 14px;">
                         看不清？<a id="switchCode" href="javascript:void();" style="text-decoration: none;">换一张</a>
                         <img id="imgcode" class="authcode" src="~/Login/GetAuthCode" width="80" height="25" />
                     </div>
-                </div>
+                </div>*@
                 <div class="row">
                     <button id="login_button" type="button"><span>登录</span></button>
                 </div>
@@ -76,10 +79,6 @@
                     } else if ($password.val() == "") {
                         $password.focus();
                         $.login.formMessage('请输入登录密码。');
-                        return false;
-                    } else if ($code.val() == "") {
-                        $code.focus();
-                        $.login.formMessage('请输入验证码。');
                         return false;
                     } else {
                         $("#login_button").attr('disabled', 'disabled').find('span').html("loading...");

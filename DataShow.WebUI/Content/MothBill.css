@@ -1,0 +1,388 @@
+﻿*{ margin:0px; padding:0px}
+body 
+{
+    font-family:微软雅黑;
+    font-size:13px;
+    text-align:center;
+}
+#top
+{
+    width:990px;
+    height:80px;
+    margin:0 auto;
+    text-align:left;
+}
+#top #logo
+{
+    width:68px;
+    height:86px;
+    float:left;
+    margin-left:20px;
+    margin-top:2px;
+}
+#top #name
+{
+    width:200px;
+    height:auto;
+    font-size:25px;
+    float:left;
+    margin-left:20px;
+    margin-top:20px;
+}
+#content
+{
+    width:990px;
+    height:auto;
+    margin:0 auto;
+    border:#53b5d8 1px solid;
+    box-shadow:0px 8px 22px #999;
+}
+#content #title
+{
+    width:990px;
+    height:50px;
+    background-color:rgb(74, 186, 225);
+    font-family:微软雅黑, 宋体;
+    color:White;
+    font-size:14px;
+    font-weight:600;
+    text-align:left;
+}
+
+#content #title #bill-title li
+{
+    list-style:none;
+    width:110px;
+    /*line-height:50px;*/
+    float:left;
+}
+#content #title #bill-title .sss
+{
+    margin:0 15px;
+    font-size:25px;
+    width:60px;
+    vertical-align:bottom;
+    height:50px;
+}
+#content #title #bill-title .sss_right
+{
+    float:right;
+    width:150px;
+    margin-top:10px;
+    margin-right:20px;
+    z-index:255;
+}
+
+/*个人消费综合*/
+#content #shopbill
+{
+    width:990px;
+    height:auto;
+    margin:0 auto;
+    border-bottom:#53b5d8 2px solid;
+}
+#content #shopbill #shopsum
+{
+    width:990px;
+    height:50px;
+    border-bottom:#53b5d8 2px dashed;
+    text-align:left;
+    font-family:微软雅黑;
+    font-size:26px;
+    overflow:hidden;
+}
+#content #shopbill #shopsum #zhichu
+{
+    color:#555;
+    padding:0 10px 0 50px;
+    line-height:50px;
+}
+#content #shopbill #shopsum #money
+{
+    color:#fd8608;
+    padding:0 0 0 10px;
+    line-height:50px;
+}
+#content #shopbill #shoppie
+{
+    width:400px;
+    height:250px;
+    float:left;
+}
+#content #shopbill #shoplist
+{
+    width:588px;
+    height:250px;
+    float:left;
+    text-align:left;
+    background-color:#F1F8FB;
+    background-image:url(images_main/bill.png);
+    background-position:-20px 0px;
+    background-repeat:no-repeat;
+}
+#content #shopbill #shoplist #left
+{
+    width:200px;
+    height:auto;
+    float:left;
+    margin-left:110px;
+}
+#content #shopbill #shoplist #right
+{
+    width:250px;
+    height:auto;
+    float:left;
+    margin-top:10px;
+}
+#content #shopbill #shoplist .list
+{
+    width:200px;
+    height:28px;
+    line-height:28px;
+    text-align:left;
+    font-family:微软雅黑;
+    font-size:12px;
+    margin-top:10px;
+    float:left;
+    background-color:#FFF;
+    border-bottom:2px solid #EEE;
+}
+#content #shopbill #shoplist .list a:link,a:visited
+{
+    color:Black;
+    width:200px;
+    line-height:28px;
+    height:28px;
+    text-decoration:none;
+}
+#content #shopbill #shoplist .list a:hover
+{
+    color:Blue;
+    width:200px;
+    line-height:28px;
+    height:28px;
+    text-decoration:none;
+}
+#content #shopbill #shoplist .detail
+{
+    width:250px;
+    height:230px;
+    background-color:#EEE;
+    list-style:none;
+    text-align:left;
+    display:none;
+    overflow:hidden;
+}
+#shoplist .detail li
+{
+    padding-left:40px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+#shoplist .detail .fo
+{
+    margin-top:10px;
+    margin-bottom:10px;
+    padding-left:20px;
+    color:#666;
+}
+/*个人消费曲线分析*/
+#content #personaldill
+{
+    width:990px;
+    height:auto;
+    margin:0 auto;
+    border-bottom:#53b5d8 2px solid;
+}
+#content #personaldill #personaldill-1
+{
+    width:600px;
+    height:300px;
+    float:left;
+    border-right:#53b5d8 2px dashed;
+}
+#content  #personaldill #personaldill-2
+{
+    width:388px;
+    height:300px;
+    float:left;
+}
+#content  #personaldill #personaldill-2 #tit
+{
+    font-size:20px;
+    margin-top:10px;
+    float:left;
+    width:100%;
+}
+#content  #personaldill #personaldill-2 .name
+{
+    width:40px;
+    height:50px;
+    margin-top:16px;
+    float:left;
+    font-size:18px;
+}
+#content  #personaldill #personaldill-2 ul
+{
+    width:250px;
+    height:auto;
+    margin-top:20px;
+    float:left;
+}
+#content  #personaldill #personaldill-2 ul li
+{
+    list-style-type:none;
+    float:left;
+    margin-right:8px;
+    width:17px;
+    height:40px;
+    background-image:url(images_main/ico.png);
+}
+#content  #personaldill #personaldill-2 ul .boy
+{
+    background-position:-1931px -100px;
+}
+#content  #personaldill #personaldill-2 ul .boywin
+{
+    background-position:-1798px -100px;
+}
+#content  #personaldill #personaldill-2 ul .girl
+{
+    background-position:-1946px -100px;
+}
+#content  #personaldill #personaldill-2 ul .girlwin
+{
+    background-position:-1960px -100px;
+}
+#content  #personaldill #personaldill-2 #percent,#percentst
+{
+    width:80px;
+    height:50px;
+    margin-top:20px;
+    line-height:40px;
+    font-size:30px;
+    color:Red;
+    float:left;
+} 
+#content  #personaldill #personaldill-2 #conclusion1,#conclusion2
+{
+    width:100%;
+    height:30px;
+    margin-top:15px;
+    font-size:20px;
+    font-family:Adobe 楷体 Std R;
+    text-align:left;
+    float:left;
+}
+#conclusion2
+{
+    text-align:right;
+}
+#content  #personaldill #personaldill-2 .outstand
+{
+    color:Red;
+    font-size:25px;
+    font-family:Adobe 楷体 Std R;
+}
+
+#content #queue
+{
+    width:990px;
+    height:300px;
+    margin:0 auto;
+    border-bottom:#53b5d8 2px solid;
+    text-align:center;
+}
+#content #queue-2
+{
+    width:990px;
+    height:50px;
+    margin:0 auto;
+    float:left;
+}
+#content #queue-2 .st:link,.st:visited
+{
+    color:Black;
+    border:1px solid #CCC;
+    text-decoration:none;
+    background-color:#FFF;
+    padding:2px;
+    display:block;
+    text-align:center;
+    width:70px;
+    float:left;
+    margin-left:5px;
+    margin-top:15px;
+}
+#content #queue-2 .st:hover,.st:active
+{
+    border:1px solid #999;
+    background-color:#FFFFCC;
+}
+#content #queue-2 .meal:link,.meal:visited
+{
+    color:Black;
+    border:1px solid #CCC;
+    text-decoration:none;
+    background-color:#CCFFFF;
+    padding:2px;
+    display:block;
+    text-align:center;
+    width:50px;
+    float:left;
+    margin-left:5px;
+    margin-top:15px;
+}
+#content #queue-2 .meal:hover,.meal:active
+{
+    border:1px solid #999;
+    background-color:#FFFFCC;
+}
+#content #queue-1
+{
+    width:990px;
+    height:250px;
+    margin:0 auto;
+    float:left;
+}
+/**/
+#content #ranklist
+{
+    width:990px;
+    height:auto;
+    margin:0 auto;
+    border-bottom:#53b5d8 2px solid;
+}
+#content #ranklist .biangeng
+{
+    width:300px;
+    height:auto;
+    margin-left:20px;
+    float:left;
+}
+#content #ranklist .biangeng ul
+{
+    width:300px;
+    height:auto;
+}
+#content #ranklist .biangeng ul li
+{
+    text-align:left;
+    list-style:none;
+    width:100%;
+    float:left;
+}
+#content #ranklist .hopeline
+{
+    width:600px;
+    margin-left:30px;
+    height:auto;
+    float:left;
+}
+#bottom
+{
+    width:990px;
+    height:50px;
+    line-height:25px;
+    margin:15px auto;
+}

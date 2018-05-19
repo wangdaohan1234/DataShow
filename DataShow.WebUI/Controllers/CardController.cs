@@ -18,5 +18,10 @@ namespace DataShow.WebUI.Controllers
         {
             return View();
         }
+
+        public ActionResult PersonalMonthBill()
+        {
+            return View();
+        }
     }
 }

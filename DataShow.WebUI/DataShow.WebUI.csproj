@@ -228,6 +228,9 @@
     <Compile Include="Service\Login.ashx.cs">
       <DependentUpon>Login.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\PersonalMonthBill.ashx.cs">
+      <DependentUpon>PersonalMonthBill.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Service\PswReset.ashx.cs">
       <DependentUpon>PswReset.ashx</DependentUpon>
     </Compile>
@@ -292,6 +295,7 @@
     <Content Include="Content\images\basket.png" />
     <Content Include="Content\images\bestseller.png" />
     <Content Include="Content\images\billing.png" />
+    <Content Include="Content\images\billon.png" />
     <Content Include="Content\images\bookmark.png" />
     <Content Include="Content\images\brainstorming.png" />
     <Content Include="Content\images\brand.png" />
@@ -405,6 +409,7 @@
     <Content Include="Content\login\jquery-2.1.1.min.js" />
     <Content Include="Content\login\jquery.cookie.js" />
     <Content Include="Content\login\jquery.md5.js" />
+    <Content Include="Content\MothBill.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\src\bootstrap.css" />
     <Content Include="Content\src\html5shiv.js" />
@@ -557,6 +562,8 @@
     <Content Include="Service\Login.ashx" />
     <Content Include="Views\Manage\PwdReset.cshtml" />
     <Content Include="Service\PswReset.ashx" />
+    <Content Include="Views\Card\PersonalMonthBill.cshtml" />
+    <Content Include="Service\PersonalMonthBill.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
