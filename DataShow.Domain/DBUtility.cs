@@ -86,6 +86,28 @@ namespace DataShow.Domain
             }
             return ds;
         }
+        public static int RunSQL(string st)
+        {
+            int count = 0;
+            SqlConnection con = new SqlConnection(connectstring);
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = st;
+                count = cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                con.Dispose();
+            }
+            return count;
+        }
         // MD5　32位加密
         public static string MD5Encrypt(string str)
         {

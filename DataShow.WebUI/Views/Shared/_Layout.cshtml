@@ -34,11 +34,9 @@
             <div class="col-md-3 left_col" style="z-index:1040;">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="/library/index" class="site_title">
-                            <i class="fa">
-                                @*<img src="~/Content/build/images/logo.png" width="35px" />*@
-                            </i> <span>
-                                @*<img src="~/Content/build/images/name.png" width="135px"; height="45px"; />*@
+                        <a href="/Home/Show" class="site_title">
+                            <span>
+                                <img src="~/Content/build/images/logo.png" width="210px"; height="45px" />
                             </span>
                         </a>
                     </div>
@@ -67,9 +65,8 @@
                                 <li>
                                     <a><i class="fa fa-home"></i> 预警系统 <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="/Home/Index">数据预警</a></li>
                                         <li><a href="/Home/Show">校情展示</a></li>
-                                        <li><a href="/Home/Show">预警报告</a></li>
+                                        <li><a href="/Home/Index">数据预警</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -81,7 +78,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a><i class="fa  fa-bar-chart-o"></i> 校园卡数据分析 <span class="fa fa-chevron-down"></span></a>
+                                    <a><i class="fa  fa-credit-card"></i> 校园卡数据分析 <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="~/Card/Card">校园卡系统</a></li>
                                         <li><a href="~/Card/StuMap">生源地分析</a></li>
@@ -102,7 +99,7 @@
                         <a data-toggle="tooltip" data-placement="top" title="Lock">
                             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                         </a>
-                        <a data-toggle="tooltip" href="/EW/Login" data-placement="top" title="Logout">
+                        <a data-toggle="tooltip" href="/Login/Index" data-placement="top" title="Logout">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
                     </div>
@@ -118,7 +115,7 @@
                             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                         </div>
                         <div class="nav toggle visible-sm visible-md visible-lg" style="width:auto;">
-                            <a style="font-size:18px;">@*<img src="~/Content/build/images/title.png" />*@</a>
+                            <a style="font-size:18px;">上海第二工业大学数据展示分析平台</a>
                         </div>
                         <div class="nav navbar-nav navbar-right" style="width:30%">
                             <li class="">
@@ -205,7 +202,7 @@
                     <h4 class="modal-title" id="H1">密码重置</h4>
                 </div>
                 <div class="modal-body">
-                    <iframe id="Iframe1" src="/admin/pwdreset" style="border:0px; width:370px; height:280px"></iframe>
+                    <iframe id="Iframe1" src="/Manage/PwdReset" style="border:0px; width:370px; height:280px"></iframe>
                 </div>
             </div>
         </div>

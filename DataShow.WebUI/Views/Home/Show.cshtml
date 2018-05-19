@@ -218,6 +218,10 @@
             data: { "data": "SHOW" },
             dataType: "text",
             success: function (data) {
+                if (data == "nosession") {
+                    window.location.href = "/Login/Index";
+                    return;
+                }
                 //获得root对象
                 data = eval("(" + data + ")");
                 //数据分配

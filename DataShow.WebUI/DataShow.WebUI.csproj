@@ -228,6 +228,9 @@
     <Compile Include="Service\Login.ashx.cs">
       <DependentUpon>Login.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Service\PswReset.ashx.cs">
+      <DependentUpon>PswReset.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -535,12 +538,6 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service\DataShow.ashx" />
@@ -558,6 +555,8 @@
     <Content Include="Views\Home\EWDetail.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Service\Login.ashx" />
+    <Content Include="Views\Manage\PwdReset.cshtml" />
+    <Content Include="Service\PswReset.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

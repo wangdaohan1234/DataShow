@@ -961,11 +961,7 @@ var global_params = {};
             }).done(function (data) {
                 try {
                     if (data == "nosession") {
-                        window.location.href = "/EW/Login";
-                        return;
-                    }
-                    if (data == "非法请求") {
-                        window.location.href = "/EW/Error403";
+                        window.location.href = "/Login/Index";
                         return;
                     }
                     else {

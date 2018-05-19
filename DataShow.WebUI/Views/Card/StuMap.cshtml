@@ -57,6 +57,10 @@
                 data: stumap_params,
                 dataType: "text",
                 success: function (data) {
+                    if (data == "nosession") {
+                        window.location.href = "/Login/Index";
+                        return;
+                    }
                     //将json字符串转换为json对象
                     var items = eval("(" + data + ")");
 

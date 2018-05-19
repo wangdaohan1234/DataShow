@@ -111,53 +111,25 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>图书流通利用率统计</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" style="min-width:auto;" role="menu">
-                            <li>
-                                <a href="JavaScript:void(0);">刷新</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content" id="tslyl_container" style="height:362px">
-                这里是图表
-            </div>
-        </div>
-    </div>
-
 </div>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        //馆内基本图情展示
-        var library_params = { "data": "library" };
-        function library_ajax() {
-            $.ajax({
-                type: "GET",
-                url: "/Service/Library.ashx",
-                data: library_params,
-                dataType: "text",
-                success: function (data) {
-                    data = eval("(" + data + ")");
-                    //数据分配
+        ////馆内基本图情展示
+        //var library_params = { "data": "library" };
+        //function library_ajax() {
+        //    $.ajax({
+        //        type: "GET",
+        //        url: "/Service/Library.ashx",
+        //        data: library_params,
+        //        dataType: "text",
+        //        success: function (data) {
+        //            data = eval("(" + data + ")");
+        //            //数据分配
                     
-                }
-            })
-        };
+        //        }
+        //    })
+        //};
         //馆藏图书按（中图法）分类
         var ztf_params = { "data": "ztf", "type": "pie" };
         function ztf_ajax() {
@@ -167,6 +139,10 @@
                 data: ztf_params,
                 dataType: "text",
                 success: function (data) {
+                    if (data == "nosession") {
+                        window.location.href = "/Login/Index";
+                        return;
+                    }
                     //将json字符串转换为json对象
                     var items = eval("(" + data + ")");
 
@@ -240,6 +216,10 @@
                 data: lx_params,
                 dataType: "text",
                 success: function (data) {
+                    if (data == "nosession") {
+                        window.location.href = "/Login/Index";
+                        return;
+                    }
                     //将json字符串转换为json对象
                     var items = eval("(" + data + ")");
 
@@ -302,6 +282,10 @@
                 data: tsjybyxy_params,
                 dataType: "text",
                 success: function (data) {
+                    if (data == "nosession") {
+                        window.location.href = "/Login/Index";
+                        return;
+                    }
                     //将json字符串转换为json对象
                     var items = eval("(" + data + ")");
 
@@ -354,83 +338,83 @@
                 }
             })
         };
-        //图书利用率
-        var tslyl_params = { "data": "tslyl", "type": "column" };
-        function tslyl_ajax() {
-            $.ajax({
-                type: "GET",
-                url: "/Service/Library.ashx",
-                data: tslyl_params,
-                dataType: "text",
-                success: function (data) {
-                    //将json字符串转换为json对象
-                    var items = eval("(" + data + ")");
+        ////图书利用率
+        //var tslyl_params = { "data": "tslyl", "type": "column" };
+        //function tslyl_ajax() {
+        //    $.ajax({
+        //        type: "GET",
+        //        url: "/Service/Library.ashx",
+        //        data: tslyl_params,
+        //        dataType: "text",
+        //        success: function (data) {
+        //            //将json字符串转换为json对象
+        //            var items = eval("(" + data + ")");
 
-                    $('#tslyl_container').highcharts({
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: null
-                        },
-                        subtitle: {
-                            text: null
-                        },
-                        xAxis: {
-                            categories: items["xAxis"],
-                            title: {
-                                text: null
-                            },
-                            labels: {
-                                formatter: function () {
-                                    if (this.value.length > 6)
-                                        return this.value.substr(0, 6) + "...";
-                                    else
-                                        return this.value;
-                                }
-                            }
-                        },
-                        yAxis: {
-                            title: {
-                                text: null
-                            },
-                            labels: {
-                                formatter: function () {
-                                    return this.value + '%';
-                                },
-                                style: {
-                                    color: '#4572A7'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            valueSuffix: '%'
-                        },
-                        plotOptions: {
-                            column: {
-                                dataLabels: {
-                                    enabled: false
-                                }
-                            }
-                        },
-                        legend: {
-                            align: 'right',
-                            verticalAlign: 'top',
-                            x: -10,
-                            y: 30,
-                            floating: true
-                        },
-                        credits: {
-                            enabled: false
-                        },
-                        series: [{
-                            name: '利用率',
-                            data: items["data"][0]["data"]
-                        }]
-                    });
-                }
-            })
-        };
+        //            $('#tslyl_container').highcharts({
+        //                chart: {
+        //                    type: 'column'
+        //                },
+        //                title: {
+        //                    text: null
+        //                },
+        //                subtitle: {
+        //                    text: null
+        //                },
+        //                xAxis: {
+        //                    categories: items["xAxis"],
+        //                    title: {
+        //                        text: null
+        //                    },
+        //                    labels: {
+        //                        formatter: function () {
+        //                            if (this.value.length > 6)
+        //                                return this.value.substr(0, 6) + "...";
+        //                            else
+        //                                return this.value;
+        //                        }
+        //                    }
+        //                },
+        //                yAxis: {
+        //                    title: {
+        //                        text: null
+        //                    },
+        //                    labels: {
+        //                        formatter: function () {
+        //                            return this.value + '%';
+        //                        },
+        //                        style: {
+        //                            color: '#4572A7'
+        //                        }
+        //                    }
+        //                },
+        //                tooltip: {
+        //                    valueSuffix: '%'
+        //                },
+        //                plotOptions: {
+        //                    column: {
+        //                        dataLabels: {
+        //                            enabled: false
+        //                        }
+        //                    }
+        //                },
+        //                legend: {
+        //                    align: 'right',
+        //                    verticalAlign: 'top',
+        //                    x: -10,
+        //                    y: 30,
+        //                    floating: true
+        //                },
+        //                credits: {
+        //                    enabled: false
+        //                },
+        //                series: [{
+        //                    name: '利用率',
+        //                    data: items["data"][0]["data"]
+        //                }]
+        //            });
+        //        }
+        //    })
+        //};
         
 
         //浏览器大小缩放时操作
@@ -440,11 +424,9 @@
         //浏览器宽度
         var body_width = 0;
         function GZL24H_changeDivHeight() {
-            library_ajax();
             ztf_ajax();
             lx_ajax();
             tsjybyxy_ajax();
-            tslyl_ajax();
         }
         //初始化
         GZL24H_changeDivHeight();
