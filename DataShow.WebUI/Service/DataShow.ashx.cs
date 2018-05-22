@@ -44,8 +44,8 @@ namespace DataShow.WebUI.Service
                             + " ON a.YXSH = b.CODE "
                             + " WHERE XH NOT IN "
                             + " (SELECT DISTINCT DATA2 FROM dbo.ORG_BB_LOG_CIR "
-                            + " WHERE LOGTYPE = '30001' AND LOAN_TIME >= CONVERT(datetime, {0}) AND DATA2 IS NOT NULL) "
-                            + " GROUP BY NAME ORDER BY COUNT(*) DESC", DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd"));
+                            + " WHERE LOGTYPE = '30001' AND LOAN_TIME >= CONVERT(datetime, '{0}') AND DATA2 IS NOT NULL) "
+                            + " GROUP BY NAME ORDER BY COUNT(*) DESC", DateTime.Now.AddMonths(-12).ToString("yyyy-MM-dd"));
                 //健康预警
                 string sql3 = "SELECT NAME,COUNT(*) FROM "
                             + " (SELECT HABI_1 FROM dbo.ORG_SP_HABITUS "
@@ -61,7 +61,7 @@ namespace DataShow.WebUI.Service
                 //医务预警
                 string sql4 = string.Format("SELECT NAME,COUNT(*) FROM "
                             + " (SELECT BLH FROM dbo.ORG_YWS_XT_BRJBXX "
-                            + " WHERE BRXZ = 13 AND JDRQ >= {0}) a "
+                            + " WHERE BRXZ = 13 AND JDRQ >= CONVERT(datetime,'{0}')) a "
                             + " LEFT JOIN "
                             + " (SELECT XH,YXSH FROM dbo.ORG_JW_XS_XSJBSJ) b "
                             + " ON a.BLH = b.XH "
@@ -70,7 +70,7 @@ namespace DataShow.WebUI.Service
                             + " ON b.YXSH = c.CODE "
                             + " WHERE NAME IS NOT NULL "
                             + " GROUP BY NAME "
-                            + " ORDER BY COUNT(*) DESC", DateTime.Now.AddDays(-60).ToString("yyy-MM-dd"));
+                            + " ORDER BY COUNT(*) DESC", DateTime.Now.AddMonths(-2).ToString("yyyy-MM-dd"));
                 sts.Add(sql1);
                 sts.Add(sql2);
                 sts.Add(sql3);
@@ -112,7 +112,7 @@ namespace DataShow.WebUI.Service
                     str += string.Format("<li>{0}：<span>{1}</span>人</li>", dt1.Tables[3].Rows[i][0].ToString(), dt1.Tables[3].Rows[i][1].ToString());
                 }
                 str += string.Format("\",{0}]", count1);
-                str += ",ew:" + 33 + ",brrow:" + 33 + ",lowbill:" + 33;
+                str += ",ew:" + 33 + ",brrow:" + 12 + ",lowbill:" + 33;
                 str += "}";
                 context.Response.ContentType = "text/plain";
                 context.Response.Write(str);

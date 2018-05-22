@@ -19,7 +19,7 @@
                     <div class="cont-content">消费预警<span id="ecard1">0</span>人</div>
                     <div class="cont-beizhu">截止昨天连续<span id="ew_config">3</span>天无消费</div>
                 </div>
-                <div id="ew" class="configure"><img src="~/Content/images/config.png" alt="设置" /></div>
+                <div id="ew" class="configure" style="cursor:pointer;"><img src="~/Content/images/config.png" alt="设置" /></div>
             </div>
             <ul id="ecard2" style="display:none"></ul>
         </div>
@@ -30,9 +30,9 @@
                 <div class="cont-logo"><img src="~/Content/images/ecard.png" width="40px" height="40px" /></div>
                 <div class="cont-2">
                     <div class="cont-content">图书预警<span id="library1">0</span>人</div>
-                    <div class="cont-beizhu">近<span id="brrow_config">2</span>个月无借阅记录</div>
+                    <div class="cont-beizhu">近<span id="brrow_config">5</span>个月无借阅记录</div>
                 </div>
-                <div id="brrow" class="configure"><img src="~/Content/images/config.png" alt="设置" /></div>
+                <div id="brrow" class="configure" style="cursor:pointer;"><img src="~/Content/images/config.png" alt="设置" /></div>
             </div>
             <ul id="library2" style="display:none"></ul>
         </div>
@@ -45,6 +45,7 @@
                     <div class="cont-content">健康预警<span id="pe1">0</span>人</div>
                     <div class="cont-beizhu">学生肥胖人数统计</div>
                 </div>
+                <div id="jk" class="configure" style="cursor:pointer;"><img src="~/Content/images/config.png" alt="设置" /></div>
             </div>
             <ul id="pe2" style="display:none"></ul>
         </div>
@@ -55,8 +56,9 @@
                 <div class="cont-logo"><img src="~/Content/images/yiliao.png" width="40px" height="40px" /></div>
                 <div class="cont-2">
                     <div class="cont-content">医务预警<span id="yiliao1">0</span>人</div>
-                    <div class="cont-beizhu">昨天挂号人数</div>
+                    <div class="cont-beizhu">两个月内挂号人数</div>
                 </div>
+                <div id="yw" class="configure" style="cursor:pointer;"><img src="~/Content/images/config.png" alt="设置" /></div>
             </div>
             <ul id="yiliao2" style="display:none"></ul>
         </div>
@@ -67,7 +69,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>学生实时预警统计</h2>
+                <h2 id="xsssyjtjtitle">学生实时预警统计(消费)</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -249,7 +251,7 @@
                 }
             })
         };
-        //学生实时预警统计
+        //学生实时预警统计（消费）
         var xsssyjtj_params = { "data": "xsssyjtj", "type": "column" };
         function xsssyjtj_ajax() {
             $.ajax({
@@ -316,6 +318,228 @@
                             name: items["data"][2].name,
                             data: items["data"][2]["data"]
                         },{
+                            name: items["data"][3].name,
+                            data: items["data"][3]["data"]
+                        }]
+                    });
+                }
+            })
+        };
+        //学生实时预警统计（图书）
+        var xsssyjtjts_params = { "data": "xsssyjtjts", "type": "column" };
+        function xsssyjtjts_ajax() {
+            $.ajax({
+                type: "GET",
+                url: "/Service/EarlyWarning.ashx",
+                data: xsssyjtjts_params,
+                dataType: "text",
+                success: function (data) {
+                    if (data == "nosession") {
+                        window.location.href = "/Login/Index";
+                        return;
+                    }
+                    //将json字符串转换为json对象
+                    var items = eval("(" + data + ")");
+
+                    $('#xsssyjtj_container').highcharts({
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: null
+                        },
+                        subtitle: {
+                            text: null
+                        },
+                        xAxis: {
+                            categories: items["xAxis"],
+                            title: {
+                                text: null
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: null
+                            }
+                        },
+                        tooltip: {
+                            valueSuffix: ' 人'
+                        },
+                        plotOptions: {
+                            column: {
+                                dataLabels: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        legend: {
+                            align: 'right',
+                            verticalAlign: 'top',
+                            x: -10,
+                            y: 30,
+                            floating: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                            name: items["data"][0].name,
+                            data: items["data"][0]["data"]
+                        }, {
+                            name: items["data"][1].name,
+                            data: items["data"][1]["data"]
+                        }, {
+                            name: items["data"][2].name,
+                            data: items["data"][2]["data"]
+                        }, {
+                            name: items["data"][3].name,
+                            data: items["data"][3]["data"]
+                        }]
+                    });
+                }
+            })
+        };
+        //学生实时预警统计（健康）
+        var xsssyjtjjk_params = { "data": "xsssyjtjjk", "type": "column" };
+        function xsssyjtjjk_ajax() {
+            $.ajax({
+                type: "GET",
+                url: "/Service/EarlyWarning.ashx",
+                data: xsssyjtjjk_params,
+                dataType: "text",
+                success: function (data) {
+                    if (data == "nosession") {
+                        window.location.href = "/Login/Index";
+                        return;
+                    }
+                    //将json字符串转换为json对象
+                    var items = eval("(" + data + ")");
+
+                    $('#xsssyjtj_container').highcharts({
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: null
+                        },
+                        subtitle: {
+                            text: null
+                        },
+                        xAxis: {
+                            categories: items["xAxis"],
+                            title: {
+                                text: null
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: null
+                            }
+                        },
+                        tooltip: {
+                            valueSuffix: ' 人'
+                        },
+                        plotOptions: {
+                            column: {
+                                dataLabels: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        legend: {
+                            align: 'right',
+                            verticalAlign: 'top',
+                            x: -10,
+                            y: 30,
+                            floating: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                            name: items["data"][0].name,
+                            data: items["data"][0]["data"]
+                        }, {
+                            name: items["data"][1].name,
+                            data: items["data"][1]["data"]
+                        }, {
+                            name: items["data"][2].name,
+                            data: items["data"][2]["data"]
+                        }, {
+                            name: items["data"][3].name,
+                            data: items["data"][3]["data"]
+                        }]
+                    });
+                }
+            })
+        };
+        //学生实时预警统计（医务）
+        var xsssyjtjyw_params = { "data": "xsssyjtjyw", "type": "column" };
+        function xsssyjtjyw_ajax() {
+            $.ajax({
+                type: "GET",
+                url: "/Service/EarlyWarning.ashx",
+                data: xsssyjtjyw_params,
+                dataType: "text",
+                success: function (data) {
+                    if (data == "nosession") {
+                        window.location.href = "/Login/Index";
+                        return;
+                    }
+                    //将json字符串转换为json对象
+                    var items = eval("(" + data + ")");
+
+                    $('#xsssyjtj_container').highcharts({
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: null
+                        },
+                        subtitle: {
+                            text: null
+                        },
+                        xAxis: {
+                            categories: items["xAxis"],
+                            title: {
+                                text: null
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: null
+                            }
+                        },
+                        tooltip: {
+                            valueSuffix: ' 人'
+                        },
+                        plotOptions: {
+                            column: {
+                                dataLabels: {
+                                    enabled: false
+                                }
+                            }
+                        },
+                        legend: {
+                            align: 'right',
+                            verticalAlign: 'top',
+                            x: -10,
+                            y: 30,
+                            floating: true
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        series: [{
+                            name: items["data"][0].name,
+                            data: items["data"][0]["data"]
+                        }, {
+                            name: items["data"][1].name,
+                            data: items["data"][1]["data"]
+                        }, {
+                            name: items["data"][2].name,
+                            data: items["data"][2]["data"]
+                        }, {
                             name: items["data"][3].name,
                             data: items["data"][3]["data"]
                         }]
@@ -632,6 +856,23 @@
         $(".row-cot4").mouseleave(function () {
             $(".row-cot4 ul").slideUp("1000");
             $(".row-cot4 .configure").fadeOut("500");
+        });
+        //预警点击切换事件
+        $("#ew").click(function () {
+            document.getElementById("xsssyjtjtitle").innerText = "学生实时预警统计(消费)"
+            xsssyjtj_ajax();
+        });
+        $("#brrow").click(function () {
+            document.getElementById("xsssyjtjtitle").innerText = "学生实时预警统计(图书)"
+            xsssyjtjts_ajax();
+        });
+        $("#jk").click(function () {
+            document.getElementById("xsssyjtjtitle").innerText = "学生实时预警统计(健康)"
+            xsssyjtjjk_ajax();
+        });
+        $("#yw").click(function () {
+            document.getElementById("xsssyjtjtitle").innerText = "学生实时预警统计(医务)"
+            xsssyjtjyw_ajax();
         });
 
         //浏览器大小缩放时操作

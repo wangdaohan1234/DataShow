@@ -45,7 +45,39 @@ namespace DataShow.WebUI.Service
                 limit = int.Parse(context.Request.QueryString["limit"].ToString());
             }
 
-            #region 学生实时预警统计
+            #region 学生实时预警统计(图书)
+            if (context.Request["data"] == "xsssyjtjts")
+            {
+                //存储过程名称
+                ProName = "EW_TSYJ_ByXYAndNJ";
+                //具体申请几个空间看存储过程中需要几个参数
+                parm = new SqlParameter[2];
+                parm[0] = new SqlParameter("@time", DateTime.Now.AddMonths(-12).ToString("yyyy-MM-dd"));
+                parm[1] = new SqlParameter("@lastestgrade", 2017);
+            }
+            #endregion
+            #region 学生实时预警统计(健康)
+            if (context.Request["data"] == "xsssyjtjjk")
+            {
+                //存储过程名称
+                ProName = "EW_JKYJ_ByXYAndNJ";
+                //具体申请几个空间看存储过程中需要几个参数
+                parm = new SqlParameter[1];
+                parm[0] = new SqlParameter("@lastestgrade", 2017);
+            }
+            #endregion
+            #region 学生实时预警统计(医务)
+            if (context.Request["data"] == "xsssyjtjyw")
+            {
+                //存储过程名称
+                ProName = "EW_YWYJ_ByXYAndNJ";
+                //具体申请几个空间看存储过程中需要几个参数
+                parm = new SqlParameter[2];
+                parm[0] = new SqlParameter("@time", DateTime.Now.AddMonths(-2).ToString("yyyy-MM-dd"));
+                parm[1] = new SqlParameter("@lastestgrade", 2017);
+            }
+            #endregion
+            #region 学生实时预警统计(消费)
             if (context.Request["data"] == "xsssyjtj")
             {
                 //存储过程名称
